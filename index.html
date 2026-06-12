@@ -9,540 +9,124 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
 :root {
-  --bg: #0B1523;
-  --surface: #122035;
-  --surface-2: #1A2E47;
-  --border: #1E3A56;
-  --border-strong: #2C5480;
-  --text-primary: #E8F0FA;
-  --text-secondary: #7AAED4;
-  --text-tertiary: #456E92;
-  --accent: #3B82C4;
-  --accent-light: #1A3657;
-  --accent-text: #90C4E8;
-  --info-bg: #1A3657;
-  --info-text: #90C4E8;
-  --rec-border: #3B82C4;
+  --bg: #0B1523; --surface: #122035; --surface-2: #1A2E47;
+  --border: #1E3A56; --border-strong: #2C5480;
+  --text-primary: #E8F0FA; --text-secondary: #7AAED4; --text-tertiary: #456E92;
+  --accent: #3B82C4; --accent-light: #1A3657; --accent-text: #90C4E8;
 }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; }
  
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: var(--text-primary);
-  min-height: 100vh;
-}
- 
-/* Header */
 .header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  height: 56px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 0 2rem; display: flex; align-items: center; gap: 12px;
+  height: 56px; position: sticky; top: 0; z-index: 10;
 }
-.logo-mark {
-  width: 28px; height: 28px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-}
+.logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
 .logo-mark svg { width: 16px; height: 16px; }
 .header-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
 .header-div { width: 1px; height: 18px; background: var(--border); }
 .header-sub { font-size: 13px; color: var(--text-tertiary); }
  
-/* Layout */
-.main {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 2rem;
-  align-items: start;
-}
+.main { max-width: 1200px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 340px 1fr; gap: 2rem; align-items: start; }
  
-/* Panel */
 .panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  position: sticky;
-  top: 72px;
-  max-height: calc(100vh - 88px);
-  overflow-y: auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; position: sticky; top: 72px; max-height: calc(100vh - 88px); overflow-y: auto;
 }
 .panel::-webkit-scrollbar { width: 4px; }
-.panel::-webkit-scrollbar-track { background: transparent; }
 .panel::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
- 
-.panel-header {
-  padding: 1.25rem 1.5rem 1rem;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  background: var(--surface);
-  z-index: 2;
-}
-.panel-header h1 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  margin-bottom: 3px;
-}
+.panel-header { padding: 1.25rem 1.5rem 1rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--surface); z-index: 2; }
+.panel-header h1 { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 3px; }
 .panel-header p { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
- 
 .panel-body { padding: 1.25rem 1.5rem 1.5rem; }
  
 .field { margin-bottom: 14px; }
-.field label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 5px;
+.field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 5px; }
+.field input, .field select, .field textarea {
+  width: 100%; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-primary);
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px 11px;
+  outline: none; transition: border-color 0.15s; appearance: none; -webkit-appearance: none; line-height: 1.5;
 }
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  color: var(--text-primary);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 11px;
-  outline: none;
-  transition: border-color 0.15s;
-  appearance: none;
-  -webkit-appearance: none;
-  line-height: 1.5;
-}
-.field input::placeholder,
-.field textarea::placeholder { color: var(--text-tertiary); }
-.field input:focus,
-.field select:focus,
-.field textarea:focus { border-color: var(--border-strong); background: var(--surface); }
+.field input::placeholder, .field textarea::placeholder { color: var(--text-tertiary); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--border-strong); background: var(--surface); }
 .field textarea { resize: vertical; min-height: 56px; }
 .field select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237AAED4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  padding-right: 28px;
-  cursor: pointer;
+  background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; cursor: pointer;
 }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
- 
+.opt-label { font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 10px; color: var(--text-tertiary); }
 .divider { height: 1px; background: var(--border); margin: 16px 0; }
  
 .btn-generate {
-  width: 100%;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 11px 16px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: -0.01em;
-  transition: opacity 0.15s, transform 0.1s;
+  width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 8px;
+  padding: 11px 16px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; letter-spacing: -0.01em; transition: opacity 0.15s, transform 0.1s;
 }
 .btn-generate:hover { opacity: 0.88; }
 .btn-generate:active { transform: scale(0.99); }
-.btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
  
-/* Results */
 .results { display: flex; flex-direction: column; gap: 2rem; }
  
 .empty-state {
-  background: var(--surface);
-  border: 1px dashed var(--border-strong);
-  border-radius: 14px;
-  padding: 4rem 2rem;
-  text-align: center;
+  background: var(--surface); border: 1px dashed var(--border-strong);
+  border-radius: 14px; padding: 4rem 2rem; text-align: center;
 }
-.empty-icon {
-  width: 52px; height: 52px;
-  background: var(--surface-2);
-  border-radius: 12px;
-  margin: 0 auto 1rem;
-  display: flex; align-items: center; justify-content: center;
-}
+.empty-icon { width: 52px; height: 52px; background: var(--surface-2); border-radius: 12px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; }
 .empty-state h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
 .empty-state p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; max-width: 260px; margin: 0 auto; }
  
-/* Mockup wrapper */
-.mockup-wrapper {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
-.mockup-meta {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.mockup-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-}
-.mockup-treatment {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.mockup-why {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  padding: 10px 1.5rem 12px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface-2);
-}
+.mockup-wrapper { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.mockup-meta { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.mockup-num { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 2px; }
+.mockup-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.mockup-note { font-size: 11px; color: var(--text-tertiary); text-align: right; max-width: 200px; line-height: 1.4; }
+.mockup-why { font-size: 12px; color: var(--text-secondary); line-height: 1.6; padding: 10px 1.5rem 12px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
  
-/* Inbox preview row */
-.inbox-preview {
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 1.5rem;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.inbox-dot {
-  width: 8px; height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.inbox-from {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-.inbox-subject {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.inbox-preview-text {
-  font-size: 12px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex: 1;
-}
+.inbox-bar { background: var(--surface-2); border-bottom: 1px solid var(--border); padding: 9px 1.5rem; display: flex; gap: 8px; align-items: center; }
+.inbox-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+.inbox-from { font-size: 12px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+.inbox-sep { font-size: 12px; color: var(--text-tertiary); }
+.inbox-subject { font-size: 12px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+.inbox-preview-txt { font-size: 12px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
  
-/* Email canvas */
-.email-canvas {
-  padding: 1.5rem;
-  background: var(--bg);
-}
-.email-body {
-  max-width: 600px;
-  margin: 0 auto;
-  background: #ffffff;
-  border-radius: 4px;
-  overflow: hidden;
-  font-family: Georgia, 'Times New Roman', serif;
-  color: #1a1a1a;
-}
+.email-canvas { padding: 1.5rem; background: var(--bg); }
+.email-body { max-width: 600px; margin: 0 auto; background: #fff; border-radius: 4px; overflow: hidden; color: #1a1a1a; }
  
-/* Email internal elements — white bg, real email feel */
-.em-banner {
-  background: #1a1a1a;
-  padding: 10px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.em-banner-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.em-banner-badge {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  background: #fff;
-  color: #1a1a1a;
-  padding: 3px 10px;
-  border-radius: 20px;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-.em-hero {
-  position: relative;
-  overflow: hidden;
-}
-.em-hero-img {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  padding: 32px 24px;
-}
-.em-hero-img-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin-bottom: 4px;
-}
-.em-hook {
-  font-family: 'Instrument Serif', serif;
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-.em-hook-dark { color: #fff; }
-.em-hook-light { color: #1a1a1a; }
-.em-subhead {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 6px;
-  opacity: 0.85;
-}
-.em-body {
-  padding: 24px 32px;
-}
-.em-body-text {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #2a2a2a;
-  margin-bottom: 16px;
-}
-.em-brand-intro {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #555;
-  border-left: 3px solid #1a1a1a;
-  padding: 8px 14px;
-  margin: 16px 0;
-  background: #f5f5f5;
-  border-radius: 0 4px 4px 0;
-}
-.em-cta-wrap {
-  text-align: center;
-  padding: 8px 0 20px;
-}
-.em-cta-btn {
-  display: inline-block;
-  background: #1a1a1a;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 13px 36px;
-  border-radius: 3px;
-  text-decoration: none;
-}
-.em-cta-btn-outline {
-  display: inline-block;
-  background: transparent;
-  color: #1a1a1a;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 12px 36px;
-  border-radius: 3px;
-  border: 2px solid #1a1a1a;
-  text-decoration: none;
-}
-.em-divider { height: 1px; background: #e8e8e8; margin: 0 32px; }
-.em-footer {
-  padding: 20px 32px;
-  text-align: center;
-  background: #f9f9f9;
-}
-.em-trust-badges {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-.em-badge {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  color: #666;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.em-badge::before {
-  content: '✓';
-  font-size: 10px;
-  color: #1a1a1a;
-}
-.em-wordmark {
-  font-family: 'Instrument Serif', serif;
-  font-size: 14px;
-  color: #999;
-  letter-spacing: 0.04em;
-}
+.em-banner { padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.em-banner-text { font-family: 'Inter',sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.em-banner-badge { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; white-space: nowrap; }
+.em-hero-block { width: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; text-align: center; padding: 36px 28px; }
+.em-img-label { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.55; margin-bottom: 4px; }
+.em-hook { font-family: 'Instrument Serif',serif; font-size: 30px; font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; }
+.em-subhead-txt { font-family: 'Inter',sans-serif; font-size: 14px; line-height: 1.5; margin-top: 8px; opacity: 0.8; }
+.em-body-wrap { padding: 24px 32px 4px; background: #fff; }
+.em-para { font-family: 'Inter',sans-serif; font-size: 15px; line-height: 1.7; color: #2a2a2a; margin-bottom: 14px; }
+.em-brand-intro { font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 600; color: #555; border-left: 3px solid; padding: 8px 14px; margin: 14px 0; border-radius: 0 4px 4px 0; background: #f5f5f5; }
+.em-cta-area { text-align: center; padding: 12px 32px 24px; background: #fff; }
+.em-cta-solid { display: inline-block; color: #fff; font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 13px 40px; border-radius: 3px; text-decoration: none; }
+.em-cta-outline { display: inline-block; background: transparent; font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 40px; border-radius: 3px; border: 2px solid; text-decoration: none; }
+.em-cta-pill { display: inline-block; font-family: 'Inter',sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; padding: 13px 40px; border-radius: 40px; text-decoration: none; color: #fff; }
+.em-foot-div { height: 1px; background: #e8e8e8; margin: 0 32px; }
+.em-footer { padding: 20px 32px; text-align: center; background: #f9f9f9; }
+.em-trust { display: flex; justify-content: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+.em-trust-item { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 600; color: #666; letter-spacing: 0.04em; text-transform: uppercase; }
+.em-trust-item::before { content: '✓ '; }
+.em-wordmark { font-family: 'Instrument Serif',serif; font-size: 14px; color: #999; letter-spacing: 0.04em; }
+.em-split-row { display: flex; align-items: stretch; border-top: 1px solid #e8e8e8; }
+.em-split-img { flex: 0 0 44%; display: flex; align-items: center; justify-content: center; padding: 20px 14px; }
+.em-split-text { flex: 1; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+.em-split-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+.em-split-head { font-family: 'Instrument Serif',serif; font-size: 20px; line-height: 1.25; margin-bottom: 8px; color: #1a1a1a; }
+.em-split-body { font-family: 'Inter',sans-serif; font-size: 13px; line-height: 1.65; color: #444; }
+.em-ba-pair { display: flex; }
+.em-ba-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 16px; text-align: center; gap: 6px; min-height: 150px; }
+.em-ba-tag { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 4px; }
+.em-occasion-block { margin: 16px 32px; padding: 14px 20px; border-radius: 4px; text-align: center; border: 1px solid #e8e8e8; background: #fafafa; }
+.em-occasion-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+.em-occasion-text { font-family: 'Instrument Serif',serif; font-size: 18px; color: #1a1a1a; }
  
-/* Feature split layout pieces */
-.em-split-row {
-  display: flex;
-  align-items: stretch;
-}
-.em-split-img {
-  flex: 0 0 45%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px 16px;
-  text-align: center;
-}
-.em-split-text {
-  flex: 1;
-  padding: 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.em-split-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 6px;
-}
-.em-split-head {
-  font-family: 'Instrument Serif', serif;
-  font-size: 20px;
-  color: #1a1a1a;
-  line-height: 1.25;
-  margin-bottom: 8px;
-}
-.em-split-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  line-height: 1.65;
-  color: #444;
-}
- 
-/* Before/after */
-.em-ba-row {
-  display: flex;
-}
-.em-ba-col {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 16px;
-  text-align: center;
-  gap: 6px;
-}
-.em-ba-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 3px 12px;
-  border-radius: 20px;
-  margin-bottom: 4px;
-}
-.em-ba-before .em-ba-tag { background: #f0e8e8; color: #a33; }
-.em-ba-after .em-ba-tag { background: #e8f0e8; color: #363; }
- 
-/* Occasion block */
-.em-occasion {
-  margin: 0 32px 16px;
-  padding: 14px 20px;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  text-align: center;
-  background: #fafafa;
-}
-.em-occasion-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 4px;
-}
-.em-occasion-text {
-  font-family: 'Instrument Serif', serif;
-  font-size: 18px;
-  color: #1a1a1a;
-}
- 
-/* Loading */
-.loading-state {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-.spinner {
-  width: 32px; height: 32px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  margin: 0 auto 1rem;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
- 
-/* Responsive */
 @media (max-width: 860px) {
   .main { grid-template-columns: 1fr; }
   .panel { position: static; max-height: none; }
@@ -554,10 +138,7 @@ body {
  
 <header class="header">
   <div class="logo-mark">
-    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="5" width="12" height="8" rx="2" fill="white" fill-opacity="0.9"/>
-      <rect x="4" y="3" width="8" height="4" rx="1.5" fill="white" fill-opacity="0.6"/>
-    </svg>
+    <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="8" rx="2" fill="white" fill-opacity="0.9"/><rect x="4" y="3" width="8" height="4" rx="1.5" fill="white" fill-opacity="0.6"/></svg>
   </div>
   <span class="header-title">Email Mockup Maker</span>
   <div class="header-div"></div>
@@ -565,37 +146,33 @@ body {
 </header>
  
 <main class="main">
- 
-  <!-- Brief input panel -->
   <aside class="panel">
     <div class="panel-header">
       <h1>Fill in your brief</h1>
       <p>Drop in your copy and get 3 visual email treatments back.</p>
     </div>
     <div class="panel-body">
- 
       <div class="field-row">
         <div class="field">
           <label for="f-avatar">Avatar</label>
           <select id="f-avatar">
             <option value="">Select…</option>
-            <option value="Pet Parent Pam (DPCC)">Pet Parent Pam</option>
-            <option value="Savvy Sam (PCC)">Savvy Sam</option>
+            <option value="pam">Pet Parent Pam</option>
+            <option value="sam">Savvy Sam</option>
           </select>
         </div>
         <div class="field">
           <label for="f-awareness">Awareness</label>
           <select id="f-awareness">
             <option value="">Select…</option>
-            <option value="Unaware">Unaware</option>
-            <option value="Problem Aware">Problem Aware</option>
-            <option value="Solution Aware">Solution Aware</option>
-            <option value="Product Aware">Product Aware</option>
-            <option value="Most Aware">Most Aware</option>
+            <option value="unaware">Unaware</option>
+            <option value="problem">Problem Aware</option>
+            <option value="solution">Solution Aware</option>
+            <option value="product">Product Aware</option>
+            <option value="most">Most Aware</option>
           </select>
         </div>
       </div>
- 
       <div class="field-row">
         <div class="field">
           <label for="f-soph">Sophistication</label>
@@ -612,323 +189,385 @@ body {
           <label for="f-angle-type">Angle type</label>
           <select id="f-angle-type">
             <option value="">Select…</option>
-            <option value="Curiosity-led">Curiosity-led</option>
-            <option value="Direct">Direct</option>
-            <option value="Holiday / Seasonal">Holiday / Seasonal</option>
-            <option value="Disruptive">Disruptive</option>
+            <option value="curiosity">Curiosity-led</option>
+            <option value="direct">Direct</option>
+            <option value="holiday">Holiday / Seasonal</option>
+            <option value="disruptive">Disruptive</option>
           </select>
         </div>
       </div>
- 
       <div class="field">
         <label for="f-angle-stmt">Angle statement</label>
-        <textarea id="f-angle-stmt" placeholder="The core strategic angle for this send…" rows="2"></textarea>
+        <textarea id="f-angle-stmt" placeholder="The core strategic angle…" rows="2"></textarea>
       </div>
- 
       <div class="field">
         <label for="f-mechanism">Mechanism</label>
-        <textarea id="f-mechanism" placeholder="What makes the product work / the unique mechanism…" rows="2"></textarea>
+        <textarea id="f-mechanism" placeholder="What makes the product work…" rows="2"></textarea>
       </div>
- 
       <div class="divider"></div>
- 
       <div class="field">
         <label for="f-subject">Subject line</label>
-        <input type="text" id="f-subject" placeholder="Your subject line copy…" />
+        <input type="text" id="f-subject" placeholder="Your subject line…" />
       </div>
- 
       <div class="field">
         <label for="f-preview">Preview text</label>
-        <input type="text" id="f-preview" placeholder="Your preview text copy…" />
+        <input type="text" id="f-preview" placeholder="Your preview text…" />
       </div>
- 
       <div class="field">
         <label for="f-hook">Hero hook</label>
-        <textarea id="f-hook" placeholder="The main headline overlaid on the hero…" rows="2"></textarea>
+        <textarea id="f-hook" placeholder="Main headline on the hero…" rows="2"></textarea>
       </div>
- 
       <div class="field">
-        <label for="f-subhead">Subhead <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;color:var(--text-tertiary)">(optional)</span></label>
+        <label for="f-subhead">Subhead <span class="opt-label">(optional)</span></label>
         <input type="text" id="f-subhead" placeholder="Supporting line below the hook…" />
       </div>
- 
       <div class="field">
         <label for="f-hero-img">Hero image direction</label>
         <textarea id="f-hero-img" placeholder="Describe the hero image scene…" rows="2"></textarea>
       </div>
- 
       <div class="field">
         <label for="f-body">Body copy</label>
-        <textarea id="f-body" placeholder="Your email body copy…" rows="4"></textarea>
+        <textarea id="f-body" placeholder="Your email body copy…" rows="5"></textarea>
       </div>
- 
       <div class="field">
         <label for="f-brand-intro">Brand introduction</label>
         <input type="text" id="f-brand-intro" placeholder="e.g. Couch Skins fits over each cushion individually…" />
       </div>
- 
       <div class="field">
         <label for="f-cta">CTA</label>
         <input type="text" id="f-cta" placeholder="e.g. Shop now, Get yours today…" />
       </div>
- 
       <div class="divider"></div>
-      <button class="btn-generate" id="gen-btn" onclick="generateMockups()">Generate mockups →</button>
+      <button class="btn-generate" onclick="generateMockups()">Generate mockups →</button>
+      <p style="font-size:11px;color:var(--text-tertiary);text-align:center;margin-top:10px;">or Cmd+Enter</p>
     </div>
   </aside>
  
-  <!-- Results -->
   <section id="results" class="results">
     <div class="empty-state">
       <div class="empty-icon">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#456E92" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <path d="M3 9h18M9 21V9"/>
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
         </svg>
       </div>
       <h3>No mockups yet</h3>
-      <p>Fill in your brief fields and hit generate to see 3 design treatments.</p>
+      <p>Fill in your brief and hit generate to see 3 design treatments.</p>
     </div>
   </section>
- 
 </main>
  
 <script>
-function val(id) {
-  const el = document.getElementById(id);
-  return el ? el.value.trim() : '';
+function v(id) { const e = document.getElementById(id); return e ? e.value.trim() : ''; }
+function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function paras(body) {
+  const lines = (body||'').split('\n').filter(l=>l.trim());
+  if (!lines.length) return `<p class="em-para" style="color:#bbb;font-style:italic;">Body copy goes here…</p>`;
+  return lines.map(l=>`<p class="em-para">${esc(l)}</p>`).join('');
 }
- 
-function getBrief() {
-  return {
-    angleStmt: val('f-angle-stmt'),
-    avatar: val('f-avatar'),
-    awareness: val('f-awareness'),
-    soph: val('f-soph'),
-    mechanism: val('f-mechanism'),
-    angleType: val('f-angle-type'),
-    subject: val('f-subject'),
-    preview: val('f-preview'),
-    hook: val('f-hook'),
-    subhead: val('f-subhead'),
-    heroImg: val('f-hero-img'),
-    body: val('f-body'),
-    brandIntro: val('f-brand-intro'),
-    cta: val('f-cta')
-  };
+function brandIntro(text, color) {
+  if (!text) return '';
+  return `<div class="em-brand-intro" style="border-color:${color};">${esc(text)}</div>`;
 }
- 
+function ctaBtn(label, style, color) {
+  const l = esc(label||'Shop now');
+  if (style==='outline') return `<a class="em-cta-outline" href="#" style="color:${color};border-color:${color};">${l}</a>`;
+  if (style==='pill') return `<a class="em-cta-pill" href="#" style="background:${color};">${l}</a>`;
+  return `<a class="em-cta-solid" href="#" style="background:${color};">${l}</a>`;
+}
+function foot() {
+  return `<div class="em-foot-div"></div>
+  <div class="em-footer">
+    <div class="em-trust">
+      <span class="em-trust-item">Free returns</span>
+      <span class="em-trust-item">Machine washable</span>
+      <span class="em-trust-item">Custom fit</span>
+      <span class="em-trust-item">Made to order</span>
+    </div>
+    <div class="em-wordmark">Couch Skins</div>
+  </div>`;
+}
 function inboxBar(subject, preview) {
-  const subj = subject || 'Your subject line';
-  const prev = preview || 'Preview text goes here';
-  return `
-    <div class="inbox-preview">
-      <div class="inbox-dot"></div>
-      <span class="inbox-from">Couch Skins</span>
-      <span style="color:var(--text-tertiary);font-size:12px;margin:0 4px;">·</span>
-      <span class="inbox-subject">${esc(subj)}</span>
-      <span style="color:var(--text-tertiary);font-size:12px;margin:0 4px;">—</span>
-      <span class="inbox-preview-text">${esc(prev)}</span>
-    </div>`;
+  return `<div class="inbox-bar">
+    <div class="inbox-dot"></div>
+    <span class="inbox-from">Couch Skins</span>
+    <span class="inbox-sep">·</span>
+    <span class="inbox-subject">${esc(subject||'Your subject line')}</span>
+    <span class="inbox-sep">—</span>
+    <span class="inbox-preview-txt">${esc(preview||'Preview text…')}</span>
+  </div>`;
 }
  
-function banner(saleName) {
-  const label = saleName || 'SUMMER SALE';
-  return `
-    <div class="em-banner">
-      <span class="em-banner-text">${esc(label)}</span>
-      <span class="em-banner-badge">UP TO 40% OFF SITEWIDE</span>
-    </div>`;
-}
- 
-function heroBlock(heroImg, hook, subhead, bgColor, textClass, height) {
-  const h = height || 200;
-  const bg = bgColor || '#2a2a2a';
-  const imgLabel = heroImg || 'Hero image';
-  return `
-    <div class="em-hero">
-      <div class="em-hero-img" style="background:${bg};min-height:${h}px;">
-        <div class="em-hero-img-label" style="color:rgba(255,255,255,0.5);">📷 ${esc(imgLabel)}</div>
-        <div class="em-hook ${textClass || 'em-hook-dark'}">${esc(hook || 'Your hero hook goes here')}</div>
-        ${subhead ? `<div class="em-subhead" style="color:${textClass === 'em-hook-light' ? '#444' : 'rgba(255,255,255,0.8)'}">${esc(subhead)}</div>` : ''}
-      </div>
-    </div>`;
-}
- 
-function bodySection(bodyText, brandIntro, cta, ctaStyle) {
-  const paras = (bodyText || '').split('\n').filter(p => p.trim());
-  const parasHtml = paras.length
-    ? paras.map(p => `<p class="em-body-text">${esc(p)}</p>`).join('')
-    : `<p class="em-body-text" style="color:#aaa;font-style:italic;">Body copy goes here…</p>`;
-  const ctaLabel = cta || 'Shop now';
-  const btnHtml = ctaStyle === 'outline'
-    ? `<a class="em-cta-btn-outline" href="#">${esc(ctaLabel)}</a>`
-    : `<a class="em-cta-btn" href="#">${esc(ctaLabel)}</a>`;
-  const introHtml = brandIntro
-    ? `<div class="em-brand-intro">${esc(brandIntro)}</div>` : '';
-  return `
-    <div class="em-body">
-      ${parasHtml}
-      ${introHtml}
-    </div>
-    <div class="em-cta-wrap">${btnHtml}</div>`;
-}
- 
-function footer() {
-  return `
-    <div class="em-divider"></div>
-    <div class="em-footer">
-      <div class="em-trust-badges">
-        <span class="em-badge">Free returns</span>
-        <span class="em-badge">Machine washable</span>
-        <span class="em-badge">Custom fit</span>
-        <span class="em-badge">Made to order</span>
-      </div>
-      <div class="em-wordmark">Couch Skins</div>
-    </div>`;
-}
- 
-function esc(str) {
-  if (!str) return '';
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
- 
-/* ---- Three treatment renderers ---- */
- 
-function treatmentHeroLed(b) {
-  return `
-    ${banner()}
-    ${heroBlock(b.heroImg, b.hook, b.subhead, '#1c2c1c', 'em-hook-dark', 220)}
-    ${bodySection(b.body, b.brandIntro, b.cta, 'solid')}
-    ${footer()}`;
-}
- 
-function treatmentEditorial(b) {
-  const paras = (b.body || '').split('\n').filter(p => p.trim());
-  const parasHtml = paras.length
-    ? paras.map(p => `<p class="em-body-text">${esc(p)}</p>`).join('')
-    : `<p class="em-body-text" style="color:#aaa;font-style:italic;">Body copy goes here…</p>`;
-  const introHtml = b.brandIntro ? `<div class="em-brand-intro">${esc(b.brandIntro)}</div>` : '';
-  return `
-    ${banner()}
-    <div style="padding:32px 32px 8px;background:#fff;">
-      <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#888;margin-bottom:12px;">
-        ${esc(b.avatar || 'Couch Skins')}
-      </div>
-      <div class="em-hook em-hook-light" style="font-size:32px;margin-bottom:${b.subhead ? '10px' : '20px'}">${esc(b.hook || 'Your hero hook goes here')}</div>
-      ${b.subhead ? `<div style="font-family:'Inter',sans-serif;font-size:15px;color:#555;line-height:1.5;margin-bottom:20px;">${esc(b.subhead)}</div>` : ''}
-      <div style="height:1px;background:#e8e8e8;margin-bottom:20px;"></div>
-      ${parasHtml}
-      ${introHtml}
-    </div>
-    ${b.heroImg ? `
-    <div class="em-hero-img" style="background:#333;min-height:160px;margin:0;">
-      <div class="em-hero-img-label" style="color:rgba(255,255,255,0.5);">📷 ${esc(b.heroImg)}</div>
-    </div>` : ''}
-    <div class="em-cta-wrap" style="background:#fff;padding-top:20px;">
-      <a class="em-cta-btn-outline" href="#">${esc(b.cta || 'Shop now')}</a>
-    </div>
-    ${footer()}`;
-}
- 
-function treatmentBeforeAfter(b) {
-  const paras = (b.body || '').split('\n').filter(p => p.trim());
-  const bridgePara = paras.length ? paras[0] : '';
-  const restParas = paras.slice(1);
-  const introHtml = b.brandIntro ? `<div class="em-brand-intro">${esc(b.brandIntro)}</div>` : '';
-  return `
-    ${banner()}
-    <div class="em-ba-row">
-      <div class="em-ba-col em-ba-before" style="background:#f5efef;min-height:160px;">
-        <span class="em-ba-tag">Before</span>
-        <div style="font-family:'Inter',sans-serif;font-size:11px;color:#666;line-height:1.5;text-align:center;">
-          ${esc(b.heroImg ? b.heroImg + ' — problem state' : 'Problem state')}
-        </div>
-      </div>
-      <div class="em-ba-col em-ba-after" style="background:#eff5ef;min-height:160px;">
-        <span class="em-ba-tag">After</span>
-        <div style="font-family:'Inter',sans-serif;font-size:11px;color:#666;line-height:1.5;text-align:center;">
-          ${esc(b.heroImg ? b.heroImg + ' — solved' : 'Solution state')}
-        </div>
-      </div>
-    </div>
-    <div style="padding:24px 32px 0;background:#fff;">
-      <div class="em-hook em-hook-light" style="font-size:24px;margin-bottom:${b.subhead ? '8px' : '16px'}">${esc(b.hook || 'Your hero hook')}</div>
-      ${b.subhead ? `<div style="font-family:'Inter',sans-serif;font-size:14px;color:#555;margin-bottom:16px;">${esc(b.subhead)}</div>` : ''}
-      ${bridgePara ? `<p class="em-body-text">${esc(bridgePara)}</p>` : ''}
-      ${restParas.map(p => `<p class="em-body-text">${esc(p)}</p>`).join('')}
-      ${introHtml}
-    </div>
-    <div class="em-cta-wrap" style="background:#fff;">
-      <a class="em-cta-btn" href="#">${esc(b.cta || 'Shop now')}</a>
-    </div>
-    ${footer()}`;
-}
- 
-const TREATMENTS = [
-  {
-    id: 'hero-led',
-    name: 'Hero-led',
-    why: 'Full-width atmospheric hero carries the hook. Copy and CTA stacked cleanly below. The most versatile structure — works across all copy types and avatar stages.',
-    render: treatmentHeroLed
-  },
-  {
-    id: 'editorial',
-    name: 'Editorial text-forward',
-    why: 'Hook leads as large typography, no dominant hero image. Feels like a letter. Best for curiosity-led and disruptive angles where the hook itself needs to do the heavy lifting before any visual.',
-    render: treatmentEditorial
-  },
-  {
-    id: 'before-after',
-    name: 'Before / after reveal',
-    why: 'Side-by-side before/after panels open the email. The visual transformation IS the mechanism. Strong for direct copy and any angle where the product benefit is instantly shown, not described.',
-    render: treatmentBeforeAfter
-  }
+/* ── Palette library ── */
+const PALETTES = [
+  { name:'Deep forest',    heroBg:'#1c2c1c', heroText:'#fff', accent:'#4a7c4e', banner:'#1c2c1c', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1c2c1c' },
+  { name:'Warm slate',     heroBg:'#2c2c3a', heroText:'#fff', accent:'#7c6af0', banner:'#2c2c3a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#2c2c3a' },
+  { name:'Terracotta',     heroBg:'#3a1f14', heroText:'#fff', accent:'#c85a2e', banner:'#c85a2e', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#c85a2e' },
+  { name:'Coastal',        heroBg:'#0e2a3a', heroText:'#fff', accent:'#2a7fa8', banner:'#0e2a3a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0e2a3a' },
+  { name:'Warm cream',     heroBg:'#e8e0d4', heroText:'#1a1a1a', accent:'#1a1a1a', banner:'#1a1a1a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1a1a1a' },
+  { name:'Charcoal',       heroBg:'#1a1a1a', heroText:'#fff', accent:'#e8c84a', banner:'#1a1a1a', bannerText:'#fff', bannerBadgeBg:'#e8c84a', bannerBadgeText:'#1a1a1a' },
+  { name:'Sage',           heroBg:'#2a3a2a', heroText:'#fff', accent:'#6a9a6a', banner:'#2a3a2a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#2a3a2a' },
+  { name:'Dusty rose',     heroBg:'#3a1f28', heroText:'#fff', accent:'#c06080', banner:'#c06080', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#c06080' },
+  { name:'Ocean night',    heroBg:'#0a1e2e', heroText:'#fff', accent:'#1a6fa8', banner:'#0a1e2e', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0a1e2e' },
+  { name:'Stone',          heroBg:'#f5f2ee', heroText:'#1a1a1a', accent:'#555', banner:'#333', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#333' },
+  { name:'Midnight blue',  heroBg:'#0d1b2e', heroText:'#fff', accent:'#3b82c4', banner:'#0d1b2e', bannerText:'#fff', bannerBadgeBg:'#3b82c4', bannerBadgeText:'#fff' },
+  { name:'Warm black',     heroBg:'#1c1814', heroText:'#fff', accent:'#c8a060', banner:'#1c1814', bannerText:'#fff', bannerBadgeBg:'#c8a060', bannerBadgeText:'#1c1814' },
 ];
  
+/* ── Layout renderers ── */
+function renderHeroLed(b, p, ctaStyle) {
+  return `
+    <div class="em-banner" style="background:${p.banner};">
+      <span class="em-banner-text" style="color:${p.bannerText};">${esc((b.angleStmt||'Couch Skins').split(' ').slice(0,4).join(' ').toUpperCase())}</span>
+      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
+    </div>
+    <div class="em-hero-block" style="background:${p.heroBg};min-height:220px;">
+      <div class="em-img-label" style="color:${p.heroText};">📷 ${esc(b.heroImg||'Hero image')}</div>
+      <div class="em-hook" style="color:${p.heroText};">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div class="em-subhead-txt" style="color:${p.heroText};">${esc(b.subhead)}</div>`:''}
+    </div>
+    <div class="em-body-wrap">${paras(b.body)}${brandIntro(b.brandIntro,p.accent)}</div>
+    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    ${foot()}`;
+}
+ 
+function renderEditorial(b, p, ctaStyle) {
+  return `
+    <div class="em-banner" style="background:${p.banner};">
+      <span class="em-banner-text" style="color:${p.bannerText};">${esc(b.avatar||'Couch Skins').toUpperCase()}</span>
+      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
+    </div>
+    <div style="padding:32px 32px 0;background:#fff;">
+      <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:14px;">${esc(b.awareness||'')}</div>
+      <div class="em-hook" style="color:#1a1a1a;font-size:34px;margin-bottom:${b.subhead?'10px':'20px'};">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div style="font-family:'Inter',sans-serif;font-size:15px;color:#555;line-height:1.5;margin-bottom:20px;">${esc(b.subhead)}</div>`:''}
+      <div style="height:1px;background:#e8e8e8;margin-bottom:20px;"></div>
+      ${paras(b.body)}
+      ${brandIntro(b.brandIntro,p.accent)}
+    </div>
+    ${b.heroImg?`<div class="em-hero-block" style="background:${p.heroBg};min-height:140px;margin:0;">
+      <div class="em-img-label" style="color:${p.heroText};opacity:0.6;">📷 ${esc(b.heroImg)}</div>
+    </div>`:''}
+    <div class="em-cta-area" style="background:#fff;padding-top:20px;">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    ${foot()}`;
+}
+ 
+function renderBeforeAfter(b, p, ctaStyle) {
+  const lines=(b.body||'').split('\n').filter(l=>l.trim());
+  return `
+    <div class="em-banner" style="background:${p.banner};">
+      <span class="em-banner-text" style="color:${p.bannerText};">UP TO 40% OFF SITEWIDE</span>
+      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">SHOP NOW</span>
+    </div>
+    <div class="em-ba-pair">
+      <div class="em-ba-col" style="background:#f5efef;">
+        <span class="em-ba-tag" style="background:#f0dada;color:#a33;">Before</span>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;color:#666;line-height:1.5;">${esc((b.heroImg||'Problem state')+' — before')}</div>
+      </div>
+      <div class="em-ba-col" style="background:#eff5ef;">
+        <span class="em-ba-tag" style="background:#d8ecd8;color:#363;">After</span>
+        <div style="font-family:'Inter',sans-serif;font-size:11px;color:#666;line-height:1.5;">${esc((b.heroImg||'Solution')+' — after')}</div>
+      </div>
+    </div>
+    <div style="padding:24px 32px 4px;background:#fff;">
+      <div class="em-hook" style="color:#1a1a1a;font-size:26px;margin-bottom:${b.subhead?'8px':'16px'};">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div style="font-family:'Inter',sans-serif;font-size:14px;color:#555;margin-bottom:14px;">${esc(b.subhead)}</div>`:''}
+      ${paras(b.body)}
+      ${brandIntro(b.brandIntro,p.accent)}
+    </div>
+    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    ${foot()}`;
+}
+ 
+function renderFeatureSplit(b, p, ctaStyle) {
+  const lines=(b.body||'').split('\n').filter(l=>l.trim());
+  const f1=lines[0]||'Feature detail goes here.';
+  const f2=lines[1]||lines[0]||'More detail here.';
+  return `
+    <div class="em-banner" style="background:${p.banner};">
+      <span class="em-banner-text" style="color:${p.bannerText};">UP TO 40% OFF SITEWIDE</span>
+      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">SHOP NOW</span>
+    </div>
+    <div class="em-hero-block" style="background:${p.heroBg};min-height:160px;">
+      <div class="em-img-label" style="color:${p.heroText};">📷 ${esc(b.heroImg||'Hero image')}</div>
+      <div class="em-hook" style="color:${p.heroText};font-size:24px;">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div class="em-subhead-txt" style="color:${p.heroText};">${esc(b.subhead)}</div>`:''}
+    </div>
+    <div class="em-split-row">
+      <div class="em-split-img" style="background:#f0f0f0;min-height:130px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;color:#aaa;letter-spacing:0.05em;">Feature image</div>
+      </div>
+      <div class="em-split-text">
+        <div class="em-split-eyebrow">How it works</div>
+        <div class="em-split-head">${esc(b.mechanism?(b.mechanism.split(' ').slice(0,7).join(' ')):'The mechanism')}</div>
+        <div class="em-split-body">${esc(f1)}</div>
+      </div>
+    </div>
+    <div style="height:1px;background:#e8e8e8;"></div>
+    <div class="em-split-row" style="border-top:none;">
+      <div class="em-split-text">
+        <div class="em-split-eyebrow">The result</div>
+        <div class="em-split-head">${esc(b.brandIntro?(b.brandIntro.split(' ').slice(0,5).join(' ')):'The outcome')}</div>
+        <div class="em-split-body">${esc(f2)}</div>
+      </div>
+      <div class="em-split-img" style="background:#e8e8e8;min-height:130px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;color:#aaa;letter-spacing:0.05em;">Result image</div>
+      </div>
+    </div>
+    ${b.brandIntro?`<div style="padding:0 32px;">${brandIntro(b.brandIntro,p.accent)}</div>`:''}
+    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    ${foot()}`;
+}
+ 
+function renderHoliday(b, p, ctaStyle) {
+  return `
+    <div class="em-banner" style="background:${p.heroBg};">
+      <span class="em-banner-text" style="color:${p.heroText};">${esc((b.angleStmt||'Holiday Sale').split(' ').slice(0,4).join(' ').toUpperCase())}</span>
+      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
+    </div>
+    <div class="em-hero-block" style="background:${p.banner};min-height:200px;">
+      <div class="em-img-label" style="color:${p.bannerText};opacity:0.6;">📷 ${esc(b.heroImg||'Hero image')}</div>
+      <div class="em-hook" style="color:${p.bannerText};">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div class="em-subhead-txt" style="color:${p.bannerText};">${esc(b.subhead)}</div>`:''}
+    </div>
+    <div class="em-occasion-block">
+      <div class="em-occasion-eyebrow">${esc(b.awareness||'Special occasion')}</div>
+      <div class="em-occasion-text">${esc(b.angleStmt||'The perfect gift for the home.')}</div>
+    </div>
+    <div class="em-body-wrap">${paras(b.body)}${brandIntro(b.brandIntro,p.accent)}</div>
+    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    ${foot()}`;
+}
+ 
+/* ── Treatment selection logic ── */
+const ALL_LAYOUTS = ['hero-led','editorial','before-after','feature-split','holiday'];
+const CTA_STYLES = ['solid','outline','pill'];
+ 
+function getTreatmentOrder(brief) {
+  const at = brief.angleType;
+  const aw = brief.awareness;
+  const av = brief.avatar;
+ 
+  // Score each layout per brief signals
+  const scores = {
+    'hero-led':      0,
+    'editorial':     0,
+    'before-after':  0,
+    'feature-split': 0,
+    'holiday':       0
+  };
+ 
+  if (at==='curiosity')   { scores['editorial']+=4; scores['hero-led']+=2; scores['before-after']+=1; }
+  if (at==='direct')      { scores['hero-led']+=3; scores['before-after']+=4; scores['feature-split']+=3; }
+  if (at==='holiday')     { scores['holiday']+=6; scores['hero-led']+=2; }
+  if (at==='disruptive')  { scores['editorial']+=5; scores['before-after']+=3; scores['hero-led']+=1; }
+ 
+  if (aw==='unaware')     { scores['editorial']+=2; scores['hero-led']+=1; }
+  if (aw==='problem')     { scores['before-after']+=3; scores['editorial']+=2; }
+  if (aw==='solution')    { scores['feature-split']+=3; scores['hero-led']+=2; }
+  if (aw==='product')     { scores['feature-split']+=2; scores['before-after']+=2; }
+  if (aw==='most')        { scores['hero-led']+=3; scores['before-after']+=2; }
+ 
+  if (av==='pam')         { scores['before-after']+=2; scores['hero-led']+=1; }
+  if (av==='sam')         { scores['feature-split']+=2; scores['editorial']+=1; }
+ 
+  // Sort by score descending, return top 3
+  return Object.entries(scores)
+    .sort((a,b)=>b[1]-a[1])
+    .map(e=>e[0])
+    .slice(0,3);
+}
+ 
+function pickPalettes(layouts, shuffleSeed) {
+  // Use shuffleSeed to rotate palette assignments each regenerate
+  const offset = shuffleSeed % PALETTES.length;
+  return layouts.map((_, i) => PALETTES[(offset + i * 4) % PALETTES.length]);
+}
+ 
+function pickCtaStyles(layouts, shuffleSeed) {
+  const base = ['solid','outline','pill'];
+  const offset = shuffleSeed % 3;
+  return layouts.map((_, i) => base[(offset + i) % 3]);
+}
+ 
+const TREATMENT_NAMES = {
+  'hero-led':      'Hero-led',
+  'editorial':     'Editorial text-forward',
+  'before-after':  'Before / after reveal',
+  'feature-split': 'Feature split',
+  'holiday':       'Holiday feature'
+};
+ 
+const TREATMENT_WHY = {
+  'hero-led':      (b) => `Full-width hero carries the hook visually. Clean stacked structure — works across any angle type and lets the image do the emotional work.`,
+  'editorial':     (b) => `Hook leads as large typography before any image. Feels like a letter. Best when the headline itself needs to create tension or curiosity before the reveal.`,
+  'before-after':  (b) => `Side-by-side panels open the email with the problem and solution. The visual transformation is the mechanism — strongest when the before/after contrast is obvious.`,
+  'feature-split': (b) => `Alternating image/text rows walk through the mechanism step by step. Best for direct copy with 2–3 distinct proof points or benefit stages to show.`,
+  'holiday':       (b) => `Occasion-first structure — the reason to buy leads. Hero sets the seasonal mood, an occasion callout block anchors the emotional trigger before the CTA.`
+};
+ 
+const TREATMENT_NOTE = {
+  'hero-led':      'Atmospheric hero, copy below, single dominant CTA',
+  'editorial':     'Typography-first, image secondary, open loop structure',
+  'before-after':  'Problem/solution panels, bridge copy, conversion focus',
+  'feature-split': 'Alternating image/text rows, mechanism-driven',
+  'holiday':       'Banner-led, warm hero, occasion callout block mid-email'
+};
+ 
+let shuffleSeed = 0;
+ 
 function generateMockups() {
-  const b = getBrief();
-  const hasContent = b.hook || b.subject || b.body || b.cta;
-  if (!hasContent) {
-    alert('Fill in at least the hero hook, subject line, or body copy to generate mockups.');
+  const b = {
+    angleStmt: v('f-angle-stmt'), avatar: v('f-avatar'), awareness: v('f-awareness'),
+    soph: v('f-soph'), mechanism: v('f-mechanism'), angleType: v('f-angle-type'),
+    subject: v('f-subject'), preview: v('f-preview'), hook: v('f-hook'),
+    subhead: v('f-subhead'), heroImg: v('f-hero-img'), body: v('f-body'),
+    brandIntro: v('f-brand-intro'), cta: v('f-cta')
+  };
+ 
+  if (!b.hook && !b.subject && !b.body && !b.cta) {
+    alert('Fill in at least the hero hook, subject, body copy, or CTA to generate mockups.');
     return;
   }
  
-  const btn = document.getElementById('gen-btn');
-  btn.disabled = true;
-  btn.textContent = 'Generating…';
+  shuffleSeed++;
  
-  const results = document.getElementById('results');
-  results.innerHTML = `<div class="loading-state"><div class="spinner"></div>Building your mockups…</div>`;
+  const layouts = getTreatmentOrder(b);
+  const palettes = pickPalettes(layouts, shuffleSeed);
+  const ctaStyles = pickCtaStyles(layouts, shuffleSeed);
  
-  setTimeout(() => {
-    let html = '';
-    TREATMENTS.forEach((t, i) => {
-      html += `
-      <div class="mockup-wrapper">
-        <div class="mockup-meta">
-          <div>
-            <div class="mockup-label">Treatment ${i + 1}</div>
-            <div class="mockup-treatment">${t.name}</div>
-          </div>
+  let html = '';
+  layouts.forEach((layout, i) => {
+    const p = palettes[i];
+    const ctaStyle = ctaStyles[i];
+    let emailHtml = '';
+    if (layout==='hero-led')      emailHtml = renderHeroLed(b, p, ctaStyle);
+    if (layout==='editorial')     emailHtml = renderEditorial(b, p, ctaStyle);
+    if (layout==='before-after')  emailHtml = renderBeforeAfter(b, p, ctaStyle);
+    if (layout==='feature-split') emailHtml = renderFeatureSplit(b, p, ctaStyle);
+    if (layout==='holiday')       emailHtml = renderHoliday(b, p, ctaStyle);
+ 
+    html += `
+    <div class="mockup-wrapper">
+      <div class="mockup-meta">
+        <div>
+          <div class="mockup-num">Treatment ${i+1} · ${esc(p.name)}</div>
+          <div class="mockup-name">${esc(TREATMENT_NAMES[layout])}</div>
         </div>
-        <div class="mockup-why">${t.why}</div>
-        ${inboxBar(b.subject, b.preview)}
-        <div class="email-canvas">
-          <div class="email-body">
-            ${t.render(b)}
-          </div>
-        </div>
-      </div>`;
-    });
-    results.innerHTML = html;
-    btn.disabled = false;
-    btn.textContent = 'Regenerate mockups →';
-  }, 600);
+        <div class="mockup-note">${esc(TREATMENT_NOTE[layout])}</div>
+      </div>
+      <div class="mockup-why">${TREATMENT_WHY[layout](b)}</div>
+      ${inboxBar(b.subject, b.preview)}
+      <div class="email-canvas">
+        <div class="email-body">${emailHtml}</div>
+      </div>
+    </div>`;
+  });
+ 
+  document.getElementById('results').innerHTML = html;
 }
  
-document.addEventListener('keydown', function(e) {
-  if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') generateMockups();
+document.addEventListener('keydown', e => {
+  if ((e.metaKey||e.ctrlKey) && e.key==='Enter') generateMockups();
 });
 </script>
 </body>
