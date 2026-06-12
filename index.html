@@ -9,28 +9,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   :root {
-    --bg: #F7F5F2;
-    --surface: #FFFFFF;
-    --surface-2: #F0EDE9;
-    --border: #E2DED9;
-    --border-strong: #C9C4BE;
-    --text-primary: #1A1917;
-    --text-secondary: #6B6660;
-    --text-tertiary: #A09B96;
-    --accent: #C85A2E;
-    --accent-light: #FAE8DF;
-    --accent-text: #7A3219;
-    --info-bg: #EAF1FB;
-    --info-text: #1A4A7A;
-    --wf-dark: #3D3A37;
-    --wf-mid: #8C8782;
-    --wf-light: #C9C4BE;
-    --wf-lighter: #E2DED9;
-    --rec-border: #378ADD;
+    --bg: #0B1523;
+    --surface: #122035;
+    --surface-2: #1A2E47;
+    --border: #1E3A56;
+    --border-strong: #2C5480;
+    --text-primary: #E8F0FA;
+    --text-secondary: #7AAED4;
+    --text-tertiary: #456E92;
+    --accent: #3B82C4;
+    --accent-light: #1A3657;
+    --accent-text: #90C4E8;
+    --info-bg: #1A3657;
+    --info-text: #90C4E8;
+    --wf-dark: #3B82C4;
+    --wf-mid: #2C5480;
+    --wf-light: #1E3A56;
+    --wf-lighter: #1A2E47;
+    --rec-border: #3B82C4;
   }
-
+ 
   body {
     font-family: 'Inter', sans-serif;
     background: var(--bg);
@@ -38,7 +38,7 @@
     min-height: 100vh;
     padding: 0;
   }
-
+ 
   /* Header */
   .header {
     background: var(--surface);
@@ -82,7 +82,7 @@
     height: 18px;
     background: var(--border);
   }
-
+ 
   /* Main layout */
   .main {
     max-width: 1100px;
@@ -93,7 +93,7 @@
     gap: 2rem;
     align-items: start;
   }
-
+ 
   /* Panel */
   .panel {
     background: var(--surface);
@@ -122,7 +122,7 @@
     line-height: 1.5;
   }
   .panel-body { padding: 1.25rem 1.5rem; }
-
+ 
   .field { margin-bottom: 1rem; }
   .field:last-of-type { margin-bottom: 0; }
   .field label {
@@ -168,9 +168,9 @@
     padding-right: 32px;
     cursor: pointer;
   }
-
+ 
   .divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
-
+ 
   .btn-primary {
     width: 100%;
     background: var(--accent);
@@ -187,7 +187,7 @@
   }
   .btn-primary:hover { opacity: 0.9; }
   .btn-primary:active { transform: scale(0.99); }
-
+ 
   .btn-secondary {
     background: transparent;
     color: var(--text-secondary);
@@ -204,7 +204,7 @@
     gap: 6px;
   }
   .btn-secondary:hover { background: var(--bg); border-color: var(--border-strong); }
-
+ 
   .btn-ghost {
     background: transparent;
     color: var(--accent);
@@ -219,10 +219,10 @@
     letter-spacing: 0.01em;
   }
   .btn-ghost:hover { background: var(--accent-light); }
-
+ 
   /* Results area */
   .results { display: flex; flex-direction: column; gap: 16px; }
-
+ 
   .empty-state {
     background: var(--surface);
     border: 1px dashed var(--border-strong);
@@ -253,7 +253,7 @@
     max-width: 280px;
     margin: 0 auto;
   }
-
+ 
   /* Layout card */
   .layout-card {
     background: var(--surface);
@@ -291,8 +291,8 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background: #fff;
-    border: 1px solid var(--border);
+    background: #0B1523;
+    border: 1px solid var(--border-strong);
     border-radius: 6px;
     padding: 8px;
   }
@@ -315,7 +315,7 @@
   .wf-occasion span { font-size: 7px; color: var(--accent-text); font-weight: 600; letter-spacing: 0.04em; }
   .wf-offer-banner { background: var(--accent); border-radius: 3px; display: flex; align-items: center; justify-content: center; }
   .wf-offer-banner span { font-size: 7px; color: #fff; font-weight: 600; letter-spacing: 0.04em; }
-
+ 
   /* Card content */
   .card-content { padding: 1.5rem; }
   .card-top {
@@ -365,7 +365,7 @@
     padding-top: 14px;
     border-top: 1px solid var(--border);
   }
-
+ 
   /* Brief structure preview */
   .brief-preview {
     background: var(--bg);
@@ -414,7 +414,7 @@
     margin-left: 8px;
   }
   .copy-toast.visible { opacity: 1; }
-
+ 
   /* Notes field inside card */
   .notes-section { margin-top: 12px; }
   .notes-section label {
@@ -443,11 +443,11 @@
   }
   .notes-section textarea:focus { border-color: var(--border-strong); background: var(--surface); }
   .notes-section textarea::placeholder { color: var(--text-tertiary); }
-
+ 
   /* Context bar */
   .context-bar {
     background: var(--accent-light);
-    border-bottom: 1px solid #F0C4A8;
+    border-bottom: 1px solid #2C5480;
     padding: 10px 1.5rem;
     font-size: 13px;
     color: var(--accent-text);
@@ -459,14 +459,14 @@
   .context-bar.visible { display: flex; }
   .context-bar strong { font-weight: 600; }
   .context-pill {
-    background: #fff;
-    border: 1px solid #F0C4A8;
+    background: var(--surface);
+    border: 1px solid #2C5480;
     border-radius: 20px;
     padding: 2px 10px;
     font-size: 12px;
     font-weight: 500;
   }
-
+ 
   /* Responsive */
   @media (max-width: 800px) {
     .main { grid-template-columns: 1fr; }
@@ -478,7 +478,7 @@
 </style>
 </head>
 <body>
-
+ 
 <header class="header">
   <div class="header-left">
     <div class="logo-mark">
@@ -492,9 +492,9 @@
     <div class="header-sub">Couch Skins · Email Creative</div>
   </div>
 </header>
-
+ 
 <div id="context-bar" class="context-bar"></div>
-
+ 
 <main class="main">
   <!-- Input panel -->
   <aside class="panel">
@@ -539,7 +539,7 @@
       <button class="btn-primary" onclick="getLayouts()">Get layout recommendations →</button>
     </div>
   </aside>
-
+ 
   <!-- Results -->
   <section id="results" class="results">
     <div class="empty-state">
@@ -556,7 +556,7 @@
     </div>
   </section>
 </main>
-
+ 
 <script>
 const LAYOUTS = {
   "hero-led": {
@@ -626,10 +626,10 @@ const LAYOUTS = {
     score: { curiosity: 5, direct: 9, holiday: 4, disruptive: 8, lifestyle: 5, product: 8, pet: 7, "before-after": 10, "text-graphic": 2, sale_yes: 2, sale_no: 1 }
   }
 };
-
+ 
 const COPY_TYPE_LABELS = { curiosity: "Curiosity-led", direct: "Direct", holiday: "Holiday / Seasonal", disruptive: "Disruptive" };
 const HERO_LABELS = { lifestyle: "Lifestyle hero", product: "Product-forward hero", pet: "Pet close-up hero", "before-after": "Before/after hero", "text-graphic": "Text as graphic" };
-
+ 
 function scoreLayouts(copyType, heroStyle, sale) {
   return Object.entries(LAYOUTS).map(([id, layout]) => {
     let score = 0;
@@ -640,7 +640,7 @@ function scoreLayouts(copyType, heroStyle, sale) {
     return { id, layout, score };
   }).sort((a, b) => b.score - a.score).slice(0, 3);
 }
-
+ 
 function renderWireframe(type) {
   const frames = {
     "hero-led": `
@@ -687,7 +687,7 @@ function renderWireframe(type) {
     "before-after": `
       <div class="wf-banner"></div>
       <div class="wf-cols">
-        <div class="wf-col"><div class="wf-img" style="height:40px; background:var(--wf-mid); border-radius:4px; display:flex;align-items:center;justify-content:center;"><span style="font-size:7px;color:#fff;font-weight:600">BEFORE</span></div></div>
+        <div class="wf-col"><div class="wf-img" style="height:40px; background:var(--wf-light); border-radius:4px; display:flex;align-items:center;justify-content:center;"><span style="font-size:7px;color:#fff;font-weight:600">BEFORE</span></div></div>
         <div class="wf-col"><div class="wf-img" style="height:40px; background:var(--wf-dark); border-radius:4px; display:flex;align-items:center;justify-content:center;"><span style="font-size:7px;color:#fff;font-weight:600">AFTER</span></div></div>
       </div>
       <div class="wf-text" style="height:8px; width:88%"></div>
@@ -697,7 +697,7 @@ function renderWireframe(type) {
   };
   return frames[type] || "";
 }
-
+ 
 function buildBriefText(layoutId, angle, copyType, heroStyle) {
   const layout = LAYOUTS[layoutId];
   if (!layout) return "";
@@ -714,7 +714,7 @@ function buildBriefText(layoutId, angle, copyType, heroStyle) {
   });
   return lines.join("\n").trim();
 }
-
+ 
 function copyBrief(layoutId, btn) {
   const angle = document.getElementById("angle-input").value.trim();
   const copyType = document.getElementById("copy-type").value;
@@ -725,7 +725,7 @@ function copyBrief(layoutId, btn) {
     if (toast) { toast.classList.add("visible"); setTimeout(() => toast.classList.remove("visible"), 1800); }
   });
 }
-
+ 
 function toggleBrief(layoutId) {
   const el = document.getElementById("brief-" + layoutId);
   if (!el) return;
@@ -733,7 +733,7 @@ function toggleBrief(layoutId) {
   document.querySelectorAll(".brief-preview").forEach(e => e.classList.remove("visible"));
   if (!visible) el.classList.add("visible");
 }
-
+ 
 function renderBriefPreview(layoutId, angle, copyType, heroStyle) {
   const layout = LAYOUTS[layoutId];
   const fields = layout.briefStructure;
@@ -746,7 +746,7 @@ function renderBriefPreview(layoutId, angle, copyType, heroStyle) {
   html += `<div class="copy-btn-wrap"><button class="btn-ghost" onclick="copyBrief('${layoutId}', this)">Copy brief starter</button><span class="copy-toast">Copied!</span></div>`;
   return html;
 }
-
+ 
 function getLayouts() {
   const angle = document.getElementById("angle-input").value.trim();
   const copyType = document.getElementById("copy-type").value;
@@ -754,13 +754,13 @@ function getLayouts() {
   const sale = document.getElementById("sale-mode").value;
   const resultsEl = document.getElementById("results");
   const contextBar = document.getElementById("context-bar");
-
+ 
   if (!angle && !copyType && !heroStyle) {
     resultsEl.innerHTML = `<div class="empty-state"><div class="empty-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#A09B96" stroke-width="1.5"/><rect x="6" y="6" width="12" height="5" rx="1.5" fill="#C9C4BE"/><rect x="6" y="13" width="8" height="2" rx="1" fill="#E2DED9"/><rect x="6" y="16" width="5" height="2" rx="1" fill="#E2DED9"/></svg></div><h3>Add a bit more detail</h3><p>Fill in at least one field to get layout recommendations.</p></div>`;
     contextBar.className = "context-bar";
     return;
   }
-
+ 
   // Context bar
   let pills = [];
   if (angle) pills.push(`<span class="context-pill">${angle}</span>`);
@@ -769,10 +769,10 @@ function getLayouts() {
   if (sale === "yes") pills.push(`<span class="context-pill">Sale</span>`);
   contextBar.innerHTML = `<strong>Showing layouts for:</strong> ${pills.join(" ")}`;
   contextBar.className = "context-bar visible";
-
+ 
   const ranked = scoreLayouts(copyType, heroStyle, sale);
   let html = "";
-
+ 
   ranked.forEach((item, i) => {
     const { id, layout } = item;
     const isRec = i === 0;
@@ -807,10 +807,10 @@ function getLayouts() {
       </div>
     </div>`;
   });
-
+ 
   resultsEl.innerHTML = html;
 }
-
+ 
 document.getElementById("angle-input").addEventListener("keydown", function(e) {
   if (e.key === "Enter") getLayouts();
 });
