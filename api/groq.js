@@ -1,3 +1,4 @@
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -6,22 +7,32 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
  
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
  
   try {
     const { prompt } = req.body;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
  
-    const response = await fetch(url, {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.9,
-          maxOutputTokens: 1200
-        }
+        model: 'llama-3.3-70b-versatile',
+        temperature: 0.9,
+        max_tokens: 1200,
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a creative director for a DTC brand. You respond only with valid JSON arrays, no markdown, no explanation, nothing outside the JSON.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ]
       })
     });
  
@@ -32,8 +43,8 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: message });
     }
  
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    if (!text) return res.status(500).json({ error: 'Empty response from Gemini' });
+    const text = data.choices?.[0]?.message?.content || '';
+    if (!text) return res.status(500).json({ error: 'Empty response from Groq' });
  
     return res.status(200).json({ text });
   } catch (err) {
