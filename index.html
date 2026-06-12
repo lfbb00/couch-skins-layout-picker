@@ -66,6 +66,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 }
 .btn-generate:hover { opacity: 0.88; }
 .btn-generate:active { transform: scale(0.99); }
+.btn-generate:disabled { opacity: 0.45; cursor: not-allowed; }
  
 .results { display: flex; flex-direction: column; gap: 2rem; }
  
@@ -77,11 +78,21 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .empty-state h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
 .empty-state p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; max-width: 260px; margin: 0 auto; }
  
+.loading-grid { display: flex; flex-direction: column; gap: 2rem; }
+.loading-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.loading-card-top { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.loading-body { padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+.shimmer { background: var(--surface-2); border-radius: 6px; animation: shimmer 1.4s ease-in-out infinite; }
+@keyframes shimmer { 0%,100%{opacity:0.35} 50%{opacity:0.9} }
+.spinner { width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-status { font-size: 12px; color: var(--text-secondary); }
+ 
 .mockup-wrapper { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
 .mockup-meta { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .mockup-num { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 2px; }
 .mockup-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
-.mockup-note { font-size: 11px; color: var(--text-tertiary); text-align: right; max-width: 200px; line-height: 1.4; }
+.mockup-note { font-size: 11px; color: var(--text-tertiary); text-align: right; max-width: 200px; line-height: 1.5; }
 .mockup-why { font-size: 12px; color: var(--text-secondary); line-height: 1.6; padding: 10px 1.5rem 12px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
  
 .inbox-bar { background: var(--surface-2); border-bottom: 1px solid var(--border); padding: 9px 1.5rem; display: flex; gap: 8px; align-items: center; }
@@ -127,6 +138,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .em-occasion-eyebrow { font-family: 'Inter',sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #888; margin-bottom: 4px; }
 .em-occasion-text { font-family: 'Instrument Serif',serif; font-size: 18px; color: #1a1a1a; }
  
+.error-card { background: var(--surface); border: 1px solid #4a1a1a; border-radius: 14px; padding: 2rem; text-align: center; }
+.error-card p { color: #f08080; font-size: 13px; line-height: 1.6; }
+.error-card strong { display: block; font-size: 15px; margin-bottom: 8px; color: #f08080; }
+ 
 @media (max-width: 860px) {
   .main { grid-template-columns: 1fr; }
   .panel { position: static; max-height: none; }
@@ -157,19 +172,19 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
           <label for="f-avatar">Avatar</label>
           <select id="f-avatar">
             <option value="">Select…</option>
-            <option value="pam">Pet Parent Pam</option>
-            <option value="sam">Savvy Sam</option>
+            <option value="Pet Parent Pam (DPCC — Dog Proof Cushion Covers, acute pain, fast purchase)">Pet Parent Pam</option>
+            <option value="Savvy Sam (PCC — Protective Cushion Covers, low-grade persistent pain, deliberates longer)">Savvy Sam</option>
           </select>
         </div>
         <div class="field">
           <label for="f-awareness">Awareness</label>
           <select id="f-awareness">
             <option value="">Select…</option>
-            <option value="unaware">Unaware</option>
-            <option value="problem">Problem Aware</option>
-            <option value="solution">Solution Aware</option>
-            <option value="product">Product Aware</option>
-            <option value="most">Most Aware</option>
+            <option value="Unaware">Unaware</option>
+            <option value="Problem Aware">Problem Aware</option>
+            <option value="Solution Aware">Solution Aware</option>
+            <option value="Product Aware">Product Aware</option>
+            <option value="Most Aware">Most Aware</option>
           </select>
         </div>
       </div>
@@ -178,21 +193,21 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
           <label for="f-soph">Sophistication</label>
           <select id="f-soph">
             <option value="">Select…</option>
-            <option value="1">Stage 1</option>
-            <option value="2">Stage 2</option>
-            <option value="3">Stage 3</option>
-            <option value="4">Stage 4</option>
-            <option value="5">Stage 5</option>
+            <option value="Stage 1">Stage 1</option>
+            <option value="Stage 2">Stage 2</option>
+            <option value="Stage 3">Stage 3</option>
+            <option value="Stage 4">Stage 4</option>
+            <option value="Stage 5">Stage 5</option>
           </select>
         </div>
         <div class="field">
           <label for="f-angle-type">Angle type</label>
           <select id="f-angle-type">
             <option value="">Select…</option>
-            <option value="curiosity">Curiosity-led</option>
-            <option value="direct">Direct</option>
-            <option value="holiday">Holiday / Seasonal</option>
-            <option value="disruptive">Disruptive</option>
+            <option value="Curiosity-led">Curiosity-led</option>
+            <option value="Direct">Direct</option>
+            <option value="Holiday / Seasonal">Holiday / Seasonal</option>
+            <option value="Disruptive">Disruptive</option>
           </select>
         </div>
       </div>
@@ -238,7 +253,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <input type="text" id="f-cta" placeholder="e.g. Shop now, Get yours today…" />
       </div>
       <div class="divider"></div>
-      <button class="btn-generate" onclick="generateMockups()">Generate mockups →</button>
+      <button class="btn-generate" id="gen-btn" onclick="generateMockups()">Generate mockups →</button>
       <p style="font-size:11px;color:var(--text-tertiary);text-align:center;margin-top:10px;">or Cmd+Enter</p>
     </div>
   </aside>
@@ -259,12 +274,117 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 <script>
 function v(id) { const e = document.getElementById(id); return e ? e.value.trim() : ''; }
 function esc(s) { if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+ 
+function getBrief() {
+  return {
+    angleStmt: v('f-angle-stmt'), avatar: v('f-avatar'), awareness: v('f-awareness'),
+    soph: v('f-soph'), mechanism: v('f-mechanism'), angleType: v('f-angle-type'),
+    subject: v('f-subject'), preview: v('f-preview'), hook: v('f-hook'),
+    subhead: v('f-subhead'), heroImg: v('f-hero-img'), body: v('f-body'),
+    brandIntro: v('f-brand-intro'), cta: v('f-cta')
+  };
+}
+ 
+function showLoading() {
+  const cards = [1,2,3].map(i => `
+    <div class="loading-card">
+      <div class="loading-card-top">
+        <div class="spinner"></div>
+        <div>
+          <div style="font-size:11px;color:var(--text-tertiary);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px;">Treatment ${i}</div>
+          <div class="shimmer" style="height:14px;width:160px;"></div>
+        </div>
+      </div>
+      <div class="loading-body">
+        <div class="shimmer" style="height:12px;width:100%;"></div>
+        <div class="shimmer" style="height:12px;width:75%;"></div>
+        <div class="shimmer" style="height:200px;width:100%;border-radius:8px;margin-top:4px;"></div>
+        <div class="shimmer" style="height:12px;width:85%;"></div>
+        <div class="shimmer" style="height:12px;width:60%;"></div>
+      </div>
+    </div>`).join('');
+  document.getElementById('results').innerHTML = `<div class="loading-grid">${cards}</div>`;
+}
+ 
+async function callProxy(brief) {
+  const prompt = `You are a creative director for Couch Skins, a DTC brand selling fitted per-cushion couch covers.
+ 
+Two customer avatars:
+- Pet Parent Pam (DPCC): acute pain, fast purchase decision, emotionally driven
+- Savvy Sam (PCC): low-grade persistent pain, deliberates longer, needs proof
+ 
+Email structure rules:
+- Fixed elements: top banner (campaign name + "UP TO 40% OFF SITEWIDE"), trust badge footer (Free returns, Machine washable, Custom fit, Made to order), Couch Skins wordmark
+- Direct copy: mechanism fully explained, self-contained
+- Curiosity-led copy: mechanism withheld, open loop sustained, problem always clear
+- 8th grade reading level throughout
+ 
+Generate 3 genuinely distinct email design treatments for this brief. Each treatment must differ in layout structure, visual approach, hero mood, and design direction — not just colors.
+ 
+BRIEF:
+Angle statement: ${brief.angleStmt || 'not provided'}
+Avatar: ${brief.avatar || 'not provided'}
+Awareness: ${brief.awareness || 'not provided'}
+Sophistication: ${brief.soph || 'not provided'}
+Mechanism: ${brief.mechanism || 'not provided'}
+Angle type: ${brief.angleType || 'not provided'}
+Subject: ${brief.subject || 'not provided'}
+Preview: ${brief.preview || 'not provided'}
+Hero hook: ${brief.hook || 'not provided'}
+Subhead: ${brief.subhead || 'none'}
+Hero image direction: ${brief.heroImg || 'not provided'}
+Body copy: ${brief.body || 'not provided'}
+Brand introduction: ${brief.brandIntro || 'not provided'}
+CTA: ${brief.cta || 'not provided'}
+ 
+Return a JSON array of exactly 3 objects. Each object must have exactly these keys:
+{
+  "name": "Short evocative treatment name (3-5 words)",
+  "layout": one of: hero-led, editorial, before-after, feature-split, holiday,
+  "why": "One sentence max 25 words why THIS layout fits THIS brief referencing angle type avatar or mechanism",
+  "designNote": "One short visual direction note max 12 words",
+  "heroBg": "hex color for hero block matching campaign mood",
+  "heroText": "#ffffff or #1a1a1a depending on heroBg darkness",
+  "accent": "hex color for CTA button and brand intro border distinctive per treatment",
+  "ctaStyle": one of: solid, outline, pill,
+  "bannerBg": "hex color for top banner",
+  "bannerText": "#ffffff or #1a1a1a",
+  "bannerBadgeBg": "hex for badge inside banner",
+  "bannerBadgeText": "#ffffff or #1a1a1a"
+}
+ 
+Rules:
+- All 3 layouts must be different from each other
+- Vary the emotional palette not the same color family across all 3
+- If angle type is curiosity-led at least one treatment must be editorial
+- If angle type is direct at least one must be before-after or feature-split
+- If holiday or seasonal at least one must be holiday
+- If angle type is disruptive lead with editorial or before-after
+- Each why must specifically reference something from this brief not be generic
+- Return only the JSON array no markdown no explanation`;
+ 
+  const response = await fetch('/api/gemini', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt })
+  });
+ 
+  if (!response.ok) {
+    const err = await response.json();
+    throw new Error(err.error || `API error ${response.status}`);
+  }
+  const data = await response.json();
+  const clean = (data.text || '').replace(/```json|```/g, '').trim();
+  return JSON.parse(clean);
+}
+ 
+/* ── Email renderers ── */
 function paras(body) {
   const lines = (body||'').split('\n').filter(l=>l.trim());
   if (!lines.length) return `<p class="em-para" style="color:#bbb;font-style:italic;">Body copy goes here…</p>`;
   return lines.map(l=>`<p class="em-para">${esc(l)}</p>`).join('');
 }
-function brandIntro(text, color) {
+function bIntro(text, color) {
   if (!text) return '';
   return `<div class="em-brand-intro" style="border-color:${color};">${esc(text)}</div>`;
 }
@@ -296,68 +416,45 @@ function inboxBar(subject, preview) {
     <span class="inbox-preview-txt">${esc(preview||'Preview text…')}</span>
   </div>`;
 }
+function banner(t, angleStmt) {
+  const label = (angleStmt||'Couch Skins').split(' ').slice(0,4).join(' ').toUpperCase();
+  return `<div class="em-banner" style="background:${t.bannerBg};">
+    <span class="em-banner-text" style="color:${t.bannerText};">${esc(label)}</span>
+    <span class="em-banner-badge" style="background:${t.bannerBadgeBg};color:${t.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
+  </div>`;
+}
  
-/* ── Palette library ── */
-const PALETTES = [
-  { name:'Deep forest',    heroBg:'#1c2c1c', heroText:'#fff', accent:'#4a7c4e', banner:'#1c2c1c', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1c2c1c' },
-  { name:'Warm slate',     heroBg:'#2c2c3a', heroText:'#fff', accent:'#7c6af0', banner:'#2c2c3a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#2c2c3a' },
-  { name:'Terracotta',     heroBg:'#3a1f14', heroText:'#fff', accent:'#c85a2e', banner:'#c85a2e', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#c85a2e' },
-  { name:'Coastal',        heroBg:'#0e2a3a', heroText:'#fff', accent:'#2a7fa8', banner:'#0e2a3a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0e2a3a' },
-  { name:'Warm cream',     heroBg:'#e8e0d4', heroText:'#1a1a1a', accent:'#1a1a1a', banner:'#1a1a1a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1a1a1a' },
-  { name:'Charcoal',       heroBg:'#1a1a1a', heroText:'#fff', accent:'#e8c84a', banner:'#1a1a1a', bannerText:'#fff', bannerBadgeBg:'#e8c84a', bannerBadgeText:'#1a1a1a' },
-  { name:'Sage',           heroBg:'#2a3a2a', heroText:'#fff', accent:'#6a9a6a', banner:'#2a3a2a', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#2a3a2a' },
-  { name:'Dusty rose',     heroBg:'#3a1f28', heroText:'#fff', accent:'#c06080', banner:'#c06080', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#c06080' },
-  { name:'Ocean night',    heroBg:'#0a1e2e', heroText:'#fff', accent:'#1a6fa8', banner:'#0a1e2e', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0a1e2e' },
-  { name:'Stone',          heroBg:'#f5f2ee', heroText:'#1a1a1a', accent:'#555', banner:'#333', bannerText:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#333' },
-  { name:'Midnight blue',  heroBg:'#0d1b2e', heroText:'#fff', accent:'#3b82c4', banner:'#0d1b2e', bannerText:'#fff', bannerBadgeBg:'#3b82c4', bannerBadgeText:'#fff' },
-  { name:'Warm black',     heroBg:'#1c1814', heroText:'#fff', accent:'#c8a060', banner:'#1c1814', bannerText:'#fff', bannerBadgeBg:'#c8a060', bannerBadgeText:'#1c1814' },
-];
- 
-/* ── Layout renderers ── */
-function renderHeroLed(b, p, ctaStyle) {
-  return `
-    <div class="em-banner" style="background:${p.banner};">
-      <span class="em-banner-text" style="color:${p.bannerText};">${esc((b.angleStmt||'Couch Skins').split(' ').slice(0,4).join(' ').toUpperCase())}</span>
-      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
+function renderHeroLed(b, t) {
+  return `${banner(t, b.angleStmt)}
+    <div class="em-hero-block" style="background:${t.heroBg};min-height:220px;">
+      <div class="em-img-label" style="color:${t.heroText};">📷 ${esc(b.heroImg||'Hero image')}</div>
+      <div class="em-hook" style="color:${t.heroText};">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div class="em-subhead-txt" style="color:${t.heroText};">${esc(b.subhead)}</div>`:''}
     </div>
-    <div class="em-hero-block" style="background:${p.heroBg};min-height:220px;">
-      <div class="em-img-label" style="color:${p.heroText};">📷 ${esc(b.heroImg||'Hero image')}</div>
-      <div class="em-hook" style="color:${p.heroText};">${esc(b.hook||'Your hero hook')}</div>
-      ${b.subhead?`<div class="em-subhead-txt" style="color:${p.heroText};">${esc(b.subhead)}</div>`:''}
-    </div>
-    <div class="em-body-wrap">${paras(b.body)}${brandIntro(b.brandIntro,p.accent)}</div>
-    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    <div class="em-body-wrap">${paras(b.body)}${bIntro(b.brandIntro,t.accent)}</div>
+    <div class="em-cta-area">${ctaBtn(b.cta,t.ctaStyle,t.accent)}</div>
     ${foot()}`;
 }
  
-function renderEditorial(b, p, ctaStyle) {
-  return `
-    <div class="em-banner" style="background:${p.banner};">
-      <span class="em-banner-text" style="color:${p.bannerText};">${esc(b.avatar||'Couch Skins').toUpperCase()}</span>
-      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
-    </div>
+function renderEditorial(b, t) {
+  return `${banner(t, b.avatar||'Couch Skins')}
     <div style="padding:32px 32px 0;background:#fff;">
       <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:14px;">${esc(b.awareness||'')}</div>
       <div class="em-hook" style="color:#1a1a1a;font-size:34px;margin-bottom:${b.subhead?'10px':'20px'};">${esc(b.hook||'Your hero hook')}</div>
       ${b.subhead?`<div style="font-family:'Inter',sans-serif;font-size:15px;color:#555;line-height:1.5;margin-bottom:20px;">${esc(b.subhead)}</div>`:''}
       <div style="height:1px;background:#e8e8e8;margin-bottom:20px;"></div>
-      ${paras(b.body)}
-      ${brandIntro(b.brandIntro,p.accent)}
+      ${paras(b.body)}${bIntro(b.brandIntro,t.accent)}
     </div>
-    ${b.heroImg?`<div class="em-hero-block" style="background:${p.heroBg};min-height:140px;margin:0;">
-      <div class="em-img-label" style="color:${p.heroText};opacity:0.6;">📷 ${esc(b.heroImg)}</div>
+    ${b.heroImg?`<div class="em-hero-block" style="background:${t.heroBg};min-height:130px;margin:0;">
+      <div class="em-img-label" style="color:${t.heroText};opacity:0.6;">📷 ${esc(b.heroImg)}</div>
     </div>`:''}
-    <div class="em-cta-area" style="background:#fff;padding-top:20px;">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    <div class="em-cta-area" style="background:#fff;padding-top:20px;">${ctaBtn(b.cta,t.ctaStyle,t.accent)}</div>
     ${foot()}`;
 }
  
-function renderBeforeAfter(b, p, ctaStyle) {
+function renderBeforeAfter(b, t) {
   const lines=(b.body||'').split('\n').filter(l=>l.trim());
-  return `
-    <div class="em-banner" style="background:${p.banner};">
-      <span class="em-banner-text" style="color:${p.bannerText};">UP TO 40% OFF SITEWIDE</span>
-      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">SHOP NOW</span>
-    </div>
+  return `${banner(t, b.angleStmt)}
     <div class="em-ba-pair">
       <div class="em-ba-col" style="background:#f5efef;">
         <span class="em-ba-tag" style="background:#f0dada;color:#a33;">Before</span>
@@ -371,26 +468,19 @@ function renderBeforeAfter(b, p, ctaStyle) {
     <div style="padding:24px 32px 4px;background:#fff;">
       <div class="em-hook" style="color:#1a1a1a;font-size:26px;margin-bottom:${b.subhead?'8px':'16px'};">${esc(b.hook||'Your hero hook')}</div>
       ${b.subhead?`<div style="font-family:'Inter',sans-serif;font-size:14px;color:#555;margin-bottom:14px;">${esc(b.subhead)}</div>`:''}
-      ${paras(b.body)}
-      ${brandIntro(b.brandIntro,p.accent)}
+      ${paras(b.body)}${bIntro(b.brandIntro,t.accent)}
     </div>
-    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    <div class="em-cta-area">${ctaBtn(b.cta,t.ctaStyle,t.accent)}</div>
     ${foot()}`;
 }
  
-function renderFeatureSplit(b, p, ctaStyle) {
+function renderFeatureSplit(b, t) {
   const lines=(b.body||'').split('\n').filter(l=>l.trim());
-  const f1=lines[0]||'Feature detail goes here.';
-  const f2=lines[1]||lines[0]||'More detail here.';
-  return `
-    <div class="em-banner" style="background:${p.banner};">
-      <span class="em-banner-text" style="color:${p.bannerText};">UP TO 40% OFF SITEWIDE</span>
-      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">SHOP NOW</span>
-    </div>
-    <div class="em-hero-block" style="background:${p.heroBg};min-height:160px;">
-      <div class="em-img-label" style="color:${p.heroText};">📷 ${esc(b.heroImg||'Hero image')}</div>
-      <div class="em-hook" style="color:${p.heroText};font-size:24px;">${esc(b.hook||'Your hero hook')}</div>
-      ${b.subhead?`<div class="em-subhead-txt" style="color:${p.heroText};">${esc(b.subhead)}</div>`:''}
+  return `${banner(t, b.angleStmt)}
+    <div class="em-hero-block" style="background:${t.heroBg};min-height:160px;">
+      <div class="em-img-label" style="color:${t.heroText};">📷 ${esc(b.heroImg||'Hero image')}</div>
+      <div class="em-hook" style="color:${t.heroText};font-size:24px;">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div class="em-subhead-txt" style="color:${t.heroText};">${esc(b.subhead)}</div>`:''}
     </div>
     <div class="em-split-row">
       <div class="em-split-img" style="background:#f0f0f0;min-height:130px;">
@@ -399,7 +489,7 @@ function renderFeatureSplit(b, p, ctaStyle) {
       <div class="em-split-text">
         <div class="em-split-eyebrow">How it works</div>
         <div class="em-split-head">${esc(b.mechanism?(b.mechanism.split(' ').slice(0,7).join(' ')):'The mechanism')}</div>
-        <div class="em-split-body">${esc(f1)}</div>
+        <div class="em-split-body">${esc(lines[0]||'Feature detail goes here.')}</div>
       </div>
     </div>
     <div style="height:1px;background:#e8e8e8;"></div>
@@ -407,163 +497,88 @@ function renderFeatureSplit(b, p, ctaStyle) {
       <div class="em-split-text">
         <div class="em-split-eyebrow">The result</div>
         <div class="em-split-head">${esc(b.brandIntro?(b.brandIntro.split(' ').slice(0,5).join(' ')):'The outcome')}</div>
-        <div class="em-split-body">${esc(f2)}</div>
+        <div class="em-split-body">${esc(lines[1]||lines[0]||'More detail here.')}</div>
       </div>
       <div class="em-split-img" style="background:#e8e8e8;min-height:130px;">
         <div style="font-family:'Inter',sans-serif;font-size:10px;color:#aaa;letter-spacing:0.05em;">Result image</div>
       </div>
     </div>
-    ${b.brandIntro?`<div style="padding:0 32px;">${brandIntro(b.brandIntro,p.accent)}</div>`:''}
-    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    ${b.brandIntro?`<div style="padding:0 32px;">${bIntro(b.brandIntro,t.accent)}</div>`:''}
+    <div class="em-cta-area">${ctaBtn(b.cta,t.ctaStyle,t.accent)}</div>
     ${foot()}`;
 }
  
-function renderHoliday(b, p, ctaStyle) {
-  return `
-    <div class="em-banner" style="background:${p.heroBg};">
-      <span class="em-banner-text" style="color:${p.heroText};">${esc((b.angleStmt||'Holiday Sale').split(' ').slice(0,4).join(' ').toUpperCase())}</span>
-      <span class="em-banner-badge" style="background:${p.bannerBadgeBg};color:${p.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
+function renderHoliday(b, t) {
+  return `<div class="em-banner" style="background:${t.heroBg};">
+      <span class="em-banner-text" style="color:${t.heroText};">${esc((b.angleStmt||'Holiday Sale').split(' ').slice(0,4).join(' ').toUpperCase())}</span>
+      <span class="em-banner-badge" style="background:${t.bannerBadgeBg};color:${t.bannerBadgeText};">UP TO 40% OFF SITEWIDE</span>
     </div>
-    <div class="em-hero-block" style="background:${p.banner};min-height:200px;">
-      <div class="em-img-label" style="color:${p.bannerText};opacity:0.6;">📷 ${esc(b.heroImg||'Hero image')}</div>
-      <div class="em-hook" style="color:${p.bannerText};">${esc(b.hook||'Your hero hook')}</div>
-      ${b.subhead?`<div class="em-subhead-txt" style="color:${p.bannerText};">${esc(b.subhead)}</div>`:''}
+    <div class="em-hero-block" style="background:${t.bannerBg};min-height:200px;">
+      <div class="em-img-label" style="color:${t.bannerText};opacity:0.6;">📷 ${esc(b.heroImg||'Hero image')}</div>
+      <div class="em-hook" style="color:${t.bannerText};">${esc(b.hook||'Your hero hook')}</div>
+      ${b.subhead?`<div class="em-subhead-txt" style="color:${t.bannerText};">${esc(b.subhead)}</div>`:''}
     </div>
     <div class="em-occasion-block">
       <div class="em-occasion-eyebrow">${esc(b.awareness||'Special occasion')}</div>
       <div class="em-occasion-text">${esc(b.angleStmt||'The perfect gift for the home.')}</div>
     </div>
-    <div class="em-body-wrap">${paras(b.body)}${brandIntro(b.brandIntro,p.accent)}</div>
-    <div class="em-cta-area">${ctaBtn(b.cta,ctaStyle,p.accent)}</div>
+    <div class="em-body-wrap">${paras(b.body)}${bIntro(b.brandIntro,t.accent)}</div>
+    <div class="em-cta-area">${ctaBtn(b.cta,t.ctaStyle,t.accent)}</div>
     ${foot()}`;
 }
  
-/* ── Treatment selection logic ── */
-const ALL_LAYOUTS = ['hero-led','editorial','before-after','feature-split','holiday'];
- 
-// All possible 3-layout combinations (no repeats)
-const LAYOUT_COMBOS = [
-  ['hero-led',     'editorial',     'before-after'],
-  ['hero-led',     'before-after',  'feature-split'],
-  ['hero-led',     'feature-split', 'editorial'],
-  ['editorial',    'before-after',  'feature-split'],
-  ['editorial',    'hero-led',      'holiday'],
-  ['before-after', 'editorial',     'hero-led'],
-  ['before-after', 'feature-split', 'editorial'],
-  ['feature-split','hero-led',      'before-after'],
-  ['feature-split','editorial',     'holiday'],
-  ['holiday',      'hero-led',      'before-after'],
-];
- 
-function getBaseCombo(brief) {
-  // Pick a starting combo index from brief signals so first generate is brief-driven
-  const at = brief.angleType;
-  const aw = brief.awareness;
-  if (at==='curiosity'  && aw==='unaware')  return 0; // editorial leads
-  if (at==='curiosity')                     return 5; // editorial leads
-  if (at==='direct'     && aw==='problem')  return 1; // before-after leads
-  if (at==='direct')                        return 7; // feature-split leads
-  if (at==='holiday')                       return 4; // holiday in mix
-  if (at==='disruptive')                    return 3; // editorial + before-after
-  if (aw==='problem')                       return 5;
-  if (aw==='solution')                      return 7;
-  if (aw==='most')                          return 1;
-  return 0; // default
+function renderTreatment(layout, b, t) {
+  if (layout==='editorial')     return renderEditorial(b, t);
+  if (layout==='before-after')  return renderBeforeAfter(b, t);
+  if (layout==='feature-split') return renderFeatureSplit(b, t);
+  if (layout==='holiday')       return renderHoliday(b, t);
+  return renderHeroLed(b, t);
 }
  
-function getLayouts(brief, shuffleSeed) {
-  const base = getBaseCombo(brief);
-  // Each regenerate steps forward through combos from the base
-  const idx = (base + shuffleSeed) % LAYOUT_COMBOS.length;
-  return LAYOUT_COMBOS[idx];
-}
- 
-function pickPalettes(layouts, shuffleSeed) {
-  const offset = (shuffleSeed * 3) % PALETTES.length;
-  return layouts.map((_, i) => PALETTES[(offset + i * 4) % PALETTES.length]);
-}
- 
-function pickCtaStyles(layouts, shuffleSeed) {
-  const base = ['solid','outline','pill'];
-  const offset = shuffleSeed % 3;
-  return layouts.map((_, i) => base[(offset + i) % 3]);
-}
- 
-const TREATMENT_NAMES = {
-  'hero-led':      'Hero-led',
-  'editorial':     'Editorial text-forward',
-  'before-after':  'Before / after reveal',
-  'feature-split': 'Feature split',
-  'holiday':       'Holiday feature'
-};
- 
-const TREATMENT_WHY = {
-  'hero-led':      (b) => `Full-width hero carries the hook visually. Clean stacked structure — works across any angle type and lets the image do the emotional work.`,
-  'editorial':     (b) => `Hook leads as large typography before any image. Feels like a letter. Best when the headline itself needs to create tension or curiosity before the reveal.`,
-  'before-after':  (b) => `Side-by-side panels open the email with the problem and solution. The visual transformation is the mechanism — strongest when the before/after contrast is obvious.`,
-  'feature-split': (b) => `Alternating image/text rows walk through the mechanism step by step. Best for direct copy with 2–3 distinct proof points or benefit stages to show.`,
-  'holiday':       (b) => `Occasion-first structure — the reason to buy leads. Hero sets the seasonal mood, an occasion callout block anchors the emotional trigger before the CTA.`
-};
- 
-const TREATMENT_NOTE = {
-  'hero-led':      'Atmospheric hero, copy below, single dominant CTA',
-  'editorial':     'Typography-first, image secondary, open loop structure',
-  'before-after':  'Problem/solution panels, bridge copy, conversion focus',
-  'feature-split': 'Alternating image/text rows, mechanism-driven',
-  'holiday':       'Banner-led, warm hero, occasion callout block mid-email'
-};
- 
-let shuffleSeed = 0;
- 
-function generateMockups() {
-  const b = {
-    angleStmt: v('f-angle-stmt'), avatar: v('f-avatar'), awareness: v('f-awareness'),
-    soph: v('f-soph'), mechanism: v('f-mechanism'), angleType: v('f-angle-type'),
-    subject: v('f-subject'), preview: v('f-preview'), hook: v('f-hook'),
-    subhead: v('f-subhead'), heroImg: v('f-hero-img'), body: v('f-body'),
-    brandIntro: v('f-brand-intro'), cta: v('f-cta')
-  };
- 
+async function generateMockups() {
+  const b = getBrief();
   if (!b.hook && !b.subject && !b.body && !b.cta) {
     alert('Fill in at least the hero hook, subject, body copy, or CTA to generate mockups.');
     return;
   }
  
-  shuffleSeed++;
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  showLoading();
  
-  const layouts = getLayouts(b, shuffleSeed);
-  const palettes = pickPalettes(layouts, shuffleSeed);
-  const ctaStyles = pickCtaStyles(layouts, shuffleSeed);
- 
-  let html = '';
-  layouts.forEach((layout, i) => {
-    const p = palettes[i];
-    const ctaStyle = ctaStyles[i];
-    let emailHtml = '';
-    if (layout==='hero-led')      emailHtml = renderHeroLed(b, p, ctaStyle);
-    if (layout==='editorial')     emailHtml = renderEditorial(b, p, ctaStyle);
-    if (layout==='before-after')  emailHtml = renderBeforeAfter(b, p, ctaStyle);
-    if (layout==='feature-split') emailHtml = renderFeatureSplit(b, p, ctaStyle);
-    if (layout==='holiday')       emailHtml = renderHoliday(b, p, ctaStyle);
- 
-    html += `
-    <div class="mockup-wrapper">
-      <div class="mockup-meta">
-        <div>
-          <div class="mockup-num">Treatment ${i+1} · ${esc(p.name)}</div>
-          <div class="mockup-name">${esc(TREATMENT_NAMES[layout])}</div>
+  try {
+    const treatments = await callProxy(b);
+    let html = '';
+    treatments.forEach((t, i) => {
+      const emailHtml = renderTreatment(t.layout, b, t);
+      html += `
+      <div class="mockup-wrapper">
+        <div class="mockup-meta">
+          <div>
+            <div class="mockup-num">Treatment ${i+1}</div>
+            <div class="mockup-name">${esc(t.name)}</div>
+          </div>
+          <div class="mockup-note">${esc(t.designNote||'')}</div>
         </div>
-        <div class="mockup-note">${esc(TREATMENT_NOTE[layout])}</div>
-      </div>
-      <div class="mockup-why">${TREATMENT_WHY[layout](b)}</div>
-      ${inboxBar(b.subject, b.preview)}
-      <div class="email-canvas">
-        <div class="email-body">${emailHtml}</div>
-      </div>
-    </div>`;
-  });
+        <div class="mockup-why">${esc(t.why)}</div>
+        ${inboxBar(b.subject, b.preview)}
+        <div class="email-canvas">
+          <div class="email-body">${emailHtml}</div>
+        </div>
+      </div>`;
+    });
+    document.getElementById('results').innerHTML = html;
+  } catch(err) {
+    document.getElementById('results').innerHTML = `
+      <div class="error-card">
+        <strong>Something went wrong</strong>
+        <p>${esc(err.message)}</p>
+      </div>`;
+  }
  
-  document.getElementById('results').innerHTML = html;
+  btn.disabled = false;
+  btn.textContent = 'Regenerate mockups →';
 }
  
 document.addEventListener('keydown', e => {
