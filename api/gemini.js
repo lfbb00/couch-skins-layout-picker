@@ -20,16 +20,21 @@ export default async function handler(req, res) {
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
           temperature: 0.9,
-          maxOutputTokens: 1200,
-          responseMimeType: 'application/json'
+          maxOutputTokens: 1200
         }
       })
     });
  
     const data = await response.json();
-    if (!response.ok) return res.status(response.status).json(data);
+ 
+    if (!response.ok) {
+      const message = data?.error?.message || JSON.stringify(data);
+      return res.status(response.status).json({ error: message });
+    }
  
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    if (!text) return res.status(500).json({ error: 'Empty response from Gemini' });
+ 
     return res.status(200).json({ text });
   } catch (err) {
     return res.status(500).json({ error: err.message });
