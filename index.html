@@ -363,7 +363,7 @@ Rules:
 - Each why must specifically reference something from this brief not be generic
 - Return only the JSON array no markdown no explanation`;
  
-  const response = await fetch('/api/gemini', {
+  const response = await fetch('/api/groq', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt })
