@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Layout Picker — Couch Skins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F5F2;
+    --surface: #FFFFFF;
+    --surface-2: #F0EDE9;
+    --border: #E2DED9;
+    --border-strong: #C9C4BE;
+    --text-primary: #1A1917;
+    --text-secondary: #6B6660;
+    --text-tertiary: #A09B96;
+    --accent: #C85A2E;
+    --accent-light: #FAE8DF;
+    --accent-text: #7A3219;
+    --info-bg: #EAF1FB;
+    --info-text: #1A4A7A;
+    --wf-dark: #3D3A37;
+    --wf-mid: #8C8782;
+    --wf-light: #C9C4BE;
+    --wf-lighter: #E2DED9;
+    --rec-border: #378ADD;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Header */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-mark svg { width: 16px; height: 16px; }
+  .header-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+  .header-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+  }
+
+  /* Main layout */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Panel */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    position: sticky;
+    top: 72px;
+  }
+  .panel-header {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .panel-header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .panel-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .panel-body { padding: 1.25rem 1.5rem; }
+
+  .field { margin-bottom: 1rem; }
+  .field:last-of-type { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .field input[type="text"],
+  .field select,
+  .field textarea {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-primary);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .field input[type="text"]:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 72px;
+    line-height: 1.5;
+  }
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6660' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:active { transform: scale(0.99); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-secondary:hover { background: var(--bg); border-color: var(--border-strong); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent-light);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s;
+    letter-spacing: 0.01em;
+  }
+  .btn-ghost:hover { background: var(--accent-light); }
+
+  /* Results area */
+  .results { display: flex; flex-direction: column; gap: 16px; }
+
+  .empty-state {
+    background: var(--surface);
+    border: 1px dashed var(--border-strong);
+    border-radius: 14px;
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+  .empty-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--surface-2);
+    border-radius: 12px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .empty-state h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .empty-state p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* Layout card */
+  .layout-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .layout-card.recommended { border: 2px solid var(--rec-border); }
+  .layout-card-inner {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+  .wireframe-col {
+    background: var(--surface-2);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .wireframe-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .wireframe-frame {
+    width: 100%;
+    max-width: 148px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .wf-banner { height: 14px; background: var(--wf-dark); border-radius: 3px; }
+  .wf-hero {
+    background: var(--wf-mid);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wf-hero span { font-size: 8px; color: #fff; font-weight: 600; letter-spacing: 0.06em; }
+  .wf-text { background: var(--wf-light); border-radius: 3px; }
+  .wf-cta { background: var(--accent); border-radius: 3px; height: 12px; width: 55%; margin: 2px auto 0; }
+  .wf-img { background: var(--wf-light); border-radius: 3px; }
+  .wf-cols { display: flex; gap: 5px; }
+  .wf-col { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .wf-divider-line { height: 1px; background: var(--border); margin: 1px 0; }
+  .wf-occasion { background: var(--accent-light); border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+  .wf-occasion span { font-size: 7px; color: var(--accent-text); font-weight: 600; letter-spacing: 0.04em; }
+  .wf-offer-banner { background: var(--accent); border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+  .wf-offer-banner span { font-size: 7px; color: #fff; font-weight: 600; letter-spacing: 0.04em; }
+
+  /* Card content */
+  .card-content { padding: 1.5rem; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .card-title { font-size: 16px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.02em; }
+  .badge-rec {
+    flex-shrink: 0;
+    background: var(--info-bg);
+    color: var(--info-text);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.01em;
+  }
+  .card-why {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    background: var(--surface-2);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Brief structure preview */
+  .brief-preview {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 12px;
+    display: none;
+  }
+  .brief-preview.visible { display: block; }
+  .brief-preview-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+  }
+  .brief-field { margin-bottom: 8px; }
+  .brief-field-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+  .brief-field-value {
+    font-size: 13px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .brief-field-value.placeholder { color: var(--text-tertiary); font-style: italic; }
+  .copy-btn-wrap { margin-top: 10px; text-align: right; }
+  .copy-toast {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-left: 8px;
+  }
+  .copy-toast.visible { opacity: 1; }
+
+  /* Notes field inside card */
+  .notes-section { margin-top: 12px; }
+  .notes-section label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    display: block;
+    margin-bottom: 5px;
+  }
+  .notes-section textarea {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--text-primary);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    resize: vertical;
+    min-height: 60px;
+    outline: none;
+    transition: border-color 0.15s;
+    line-height: 1.5;
+  }
+  .notes-section textarea:focus { border-color: var(--border-strong); background: var(--surface); }
+  .notes-section textarea::placeholder { color: var(--text-tertiary); }
+
+  /* Context bar */
+  .context-bar {
+    background: var(--accent-light);
+    border-bottom: 1px solid #F0C4A8;
+    padding: 10px 1.5rem;
+    font-size: 13px;
+    color: var(--accent-text);
+    display: none;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .context-bar.visible { display: flex; }
+  .context-bar strong { font-weight: 600; }
+  .context-pill {
+    background: #fff;
+    border: 1px solid #F0C4A8;
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .main { grid-template-columns: 1fr; }
+    .panel { position: static; }
+    .layout-card-inner { grid-template-columns: 1fr; }
+    .wireframe-col { border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; gap: 16px; align-items: center; }
+    .wireframe-frame { max-width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="logo-mark">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="5" width="12" height="8" rx="2" fill="white" fill-opacity="0.9"/>
+        <rect x="4" y="3" width="8" height="4" rx="1.5" fill="white" fill-opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="header-title">Layout Picker</div>
+    <div class="header-divider"></div>
+    <div class="header-sub">Couch Skins · Email Creative</div>
+  </div>
+</header>
+
+<div id="context-bar" class="context-bar"></div>
+
+<main class="main">
+  <!-- Input panel -->
+  <aside class="panel">
+    <div class="panel-header">
+      <h1>Find the right layout</h1>
+      <p>Describe your campaign and get layout options matched to your angle and copy type.</p>
+    </div>
+    <div class="panel-body">
+      <div class="field">
+        <label for="angle-input">Campaign angle</label>
+        <input type="text" id="angle-input" placeholder="e.g. Summer shedding season…" />
+      </div>
+      <div class="field">
+        <label for="copy-type">Copy type</label>
+        <select id="copy-type">
+          <option value="">Select…</option>
+          <option value="curiosity">Curiosity-led</option>
+          <option value="direct">Direct</option>
+          <option value="holiday">Holiday / Seasonal</option>
+          <option value="disruptive">Disruptive</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="hero-style">Hero image style</label>
+        <select id="hero-style">
+          <option value="">Select…</option>
+          <option value="lifestyle">Lifestyle / in-home scene</option>
+          <option value="product">Product-forward</option>
+          <option value="pet">Pet-focused close-up</option>
+          <option value="before-after">Before / after</option>
+          <option value="text-graphic">Text as graphic</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sale-mode">Sale or promo?</label>
+        <select id="sale-mode">
+          <option value="no">No sale</option>
+          <option value="yes">Yes — sitewide or % off</option>
+        </select>
+      </div>
+      <div class="divider"></div>
+      <button class="btn-primary" onclick="getLayouts()">Get layout recommendations →</button>
+    </div>
+  </aside>
+
+  <!-- Results -->
+  <section id="results" class="results">
+    <div class="empty-state">
+      <div class="empty-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="3" width="18" height="18" rx="3" stroke="#A09B96" stroke-width="1.5"/>
+          <rect x="6" y="6" width="12" height="5" rx="1.5" fill="#C9C4BE"/>
+          <rect x="6" y="13" width="8" height="2" rx="1" fill="#E2DED9"/>
+          <rect x="6" y="16" width="5" height="2" rx="1" fill="#E2DED9"/>
+        </svg>
+      </div>
+      <h3>No layouts yet</h3>
+      <p>Fill in at least the campaign angle or copy type and hit the button to see recommendations.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+const LAYOUTS = {
+  "hero-led": {
+    name: "Hero-led with stacked body",
+    tags: ["Most versatile", "All copy types", "Strong visual impact"],
+    why: "Full-width hero carries the hook. Short punchy body blocks below, single CTA. The Couch Skins default for a reason — clean, direct, and scales to any angle without fighting the structure.",
+    wire: "hero-led",
+    briefStructure: {
+      "Layout structure": "Top banner → Full-width hero with hook overlay → Short body copy (2–3 blocks) → CTA",
+      "Hero direction": "Full-width lifestyle or pet scene. Hook text overlaid. Dream-outcome framing — show the couch looking great, not the mess.",
+      "Body copy blocks": "2–3 short paragraphs or punchy lines. Each block one idea. Lead with the most important.",
+      "CTA placement": "Single CTA below body copy. Optional ghost CTA on hero image."
+    },
+    score: { curiosity: 9, direct: 8, holiday: 8, disruptive: 7, lifestyle: 10, product: 7, pet: 9, "before-after": 6, "text-graphic": 9, sale_yes: 2, sale_no: 1 }
+  },
+  "feature-split": {
+    name: "Split feature rows",
+    tags: ["Mechanism explainer", "Multiple proof points", "Direct copy"],
+    why: "Alternating image/text rows let you walk through the product mechanism step by step. Best when you have 2–3 distinct benefits to show — keeps Direct copy from feeling like a wall of text.",
+    wire: "feature-split",
+    briefStructure: {
+      "Layout structure": "Top banner → Short hero → Feature row 1 (image left, text right) → Feature row 2 (text left, image right) → CTA",
+      "Hero direction": "Shorter hero — sets the scene, doesn't need to carry the full hook.",
+      "Feature rows": "Each row = one benefit or mechanism step. Image shows the outcome, text explains it. 2–3 rows max.",
+      "CTA placement": "Below final feature row. One strong CTA."
+    },
+    score: { curiosity: 4, direct: 10, holiday: 3, disruptive: 5, lifestyle: 7, product: 10, pet: 6, "before-after": 9, "text-graphic": 3, sale_yes: 1, sale_no: 2 }
+  },
+  "editorial-text": {
+    name: "Editorial text-forward",
+    tags: ["Curiosity engine", "Open loop tension", "Minimal imagery"],
+    why: "Minimal or no hero — the hook IS the headline. Big typographic opener, short punchy paragraphs, feels like a letter. Best for curiosity-led when you're deliberately withholding the mechanism to drive clicks.",
+    wire: "editorial-text",
+    briefStructure: {
+      "Layout structure": "Top banner → Large typographic hook (no full hero) → Short editorial body (3–4 tight paragraphs) → CTA",
+      "Hero direction": "Optional. If used, keep it small and atmospheric — not the main event. Text carries the weight.",
+      "Body copy": "Open the loop early, sustain tension, don't resolve it before the CTA. Reader must understand the problem but not the solution.",
+      "CTA placement": "CTA is the resolution of the open loop. Make the button copy part of the hook."
+    },
+    score: { curiosity: 10, direct: 3, holiday: 4, disruptive: 10, lifestyle: 4, product: 3, pet: 5, "before-after": 2, "text-graphic": 10, sale_yes: 0, sale_no: 2 }
+  },
+  "holiday-feature": {
+    name: "Holiday feature with occasion callout",
+    tags: ["Seasonal urgency", "Occasion-first", "Sale banner prominent"],
+    why: "Top banner leads with the occasion and offer. Hero is warm and lifestyle-first. A dedicated occasion callout block sits mid-email before the CTA — signals gift intent and urgency without feeling pushy.",
+    wire: "holiday-feature",
+    briefStructure: {
+      "Layout structure": "Offer banner → Warm lifestyle hero → Occasion callout block → Short body copy → CTA",
+      "Hero direction": "Warm, lived-in home scene. Pet present if possible. Dream-outcome — couch looking great on a special day.",
+      "Occasion callout block": "A highlighted box mid-email. Occasion name, gift angle or time cue. Keep it one line of copy.",
+      "CTA placement": "Below occasion block. Urgency language if applicable (ends Sunday, limited stock)."
+    },
+    score: { curiosity: 5, direct: 4, holiday: 10, disruptive: 3, lifestyle: 10, product: 5, pet: 9, "before-after": 3, "text-graphic": 4, sale_yes: 3, sale_no: 1 }
+  },
+  "before-after": {
+    name: "Before / after reveal",
+    tags: ["Problem → solution", "High visual contrast", "Strong conversion play"],
+    why: "Opens on the problem (ruined couch, pet chaos), transitions to the solution. The visual transformation IS the mechanism. Strong for Direct copy when the product benefit is instantly understood from the image alone.",
+    wire: "before-after",
+    briefStructure: {
+      "Layout structure": "Top banner → Side-by-side before/after images → Short bridge copy → Product intro → CTA",
+      "Before image": "Real problem state. Dirty, clawed, or worn couch. Relatable — not shocking. Pet in frame if possible.",
+      "After image": "Dream outcome. Clean, fresh couch with cover on. Same angle as before if possible for contrast.",
+      "Bridge copy": "1–2 lines connecting the images to the product. Short. The images did the heavy lifting.",
+      "CTA placement": "Below bridge copy. Direct CTA — 'Shop now', 'Get yours', 'Protect your couch'."
+    },
+    score: { curiosity: 5, direct: 9, holiday: 4, disruptive: 8, lifestyle: 5, product: 8, pet: 7, "before-after": 10, "text-graphic": 2, sale_yes: 2, sale_no: 1 }
+  }
+};
+
+const COPY_TYPE_LABELS = { curiosity: "Curiosity-led", direct: "Direct", holiday: "Holiday / Seasonal", disruptive: "Disruptive" };
+const HERO_LABELS = { lifestyle: "Lifestyle hero", product: "Product-forward hero", pet: "Pet close-up hero", "before-after": "Before/after hero", "text-graphic": "Text as graphic" };
+
+function scoreLayouts(copyType, heroStyle, sale) {
+  return Object.entries(LAYOUTS).map(([id, layout]) => {
+    let score = 0;
+    if (copyType && layout.score[copyType] != null) score += layout.score[copyType] * 2;
+    if (heroStyle && layout.score[heroStyle] != null) score += layout.score[heroStyle];
+    if (sale === "yes") score += (layout.score.sale_yes || 0);
+    else score += (layout.score.sale_no || 0);
+    return { id, layout, score };
+  }).sort((a, b) => b.score - a.score).slice(0, 3);
+}
+
+function renderWireframe(type) {
+  const frames = {
+    "hero-led": `
+      <div class="wf-banner"></div>
+      <div class="wf-hero" style="height:52px"><span>HERO</span></div>
+      <div class="wf-text" style="height:8px; width:88%"></div>
+      <div class="wf-text" style="height:7px; width:72%"></div>
+      <div class="wf-text" style="height:7px; width:80%"></div>
+      <div class="wf-cta"></div>
+    `,
+    "feature-split": `
+      <div class="wf-banner"></div>
+      <div class="wf-hero" style="height:28px"><span>HERO</span></div>
+      <div class="wf-cols">
+        <div class="wf-col"><div class="wf-img" style="height:30px"></div></div>
+        <div class="wf-col"><div class="wf-text" style="height:7px"></div><div class="wf-text" style="height:6px; width:80%"></div><div class="wf-text" style="height:6px; width:65%"></div></div>
+      </div>
+      <div class="wf-divider-line"></div>
+      <div class="wf-cols">
+        <div class="wf-col"><div class="wf-text" style="height:7px"></div><div class="wf-text" style="height:6px; width:80%"></div><div class="wf-text" style="height:6px; width:65%"></div></div>
+        <div class="wf-col"><div class="wf-img" style="height:30px"></div></div>
+      </div>
+      <div class="wf-cta"></div>
+    `,
+    "editorial-text": `
+      <div class="wf-banner"></div>
+      <div class="wf-text" style="height:18px; width:90%"></div>
+      <div class="wf-text" style="height:7px; width:95%"></div>
+      <div class="wf-text" style="height:7px; width:85%"></div>
+      <div class="wf-divider-line"></div>
+      <div class="wf-text" style="height:7px; width:90%"></div>
+      <div class="wf-text" style="height:7px; width:78%"></div>
+      <div class="wf-text" style="height:7px; width:83%"></div>
+      <div class="wf-cta"></div>
+    `,
+    "holiday-feature": `
+      <div class="wf-offer-banner" style="height:16px"><span>OFFER BANNER</span></div>
+      <div class="wf-hero" style="height:44px"><span>HERO</span></div>
+      <div class="wf-occasion" style="height:20px"><span>OCCASION CALLOUT</span></div>
+      <div class="wf-text" style="height:7px; width:80%"></div>
+      <div class="wf-text" style="height:7px; width:68%"></div>
+      <div class="wf-cta"></div>
+    `,
+    "before-after": `
+      <div class="wf-banner"></div>
+      <div class="wf-cols">
+        <div class="wf-col"><div class="wf-img" style="height:40px; background:var(--wf-mid); border-radius:4px; display:flex;align-items:center;justify-content:center;"><span style="font-size:7px;color:#fff;font-weight:600">BEFORE</span></div></div>
+        <div class="wf-col"><div class="wf-img" style="height:40px; background:var(--wf-dark); border-radius:4px; display:flex;align-items:center;justify-content:center;"><span style="font-size:7px;color:#fff;font-weight:600">AFTER</span></div></div>
+      </div>
+      <div class="wf-text" style="height:8px; width:88%"></div>
+      <div class="wf-text" style="height:7px; width:68%"></div>
+      <div class="wf-cta"></div>
+    `
+  };
+  return frames[type] || "";
+}
+
+function buildBriefText(layoutId, angle, copyType, heroStyle) {
+  const layout = LAYOUTS[layoutId];
+  if (!layout) return "";
+  const lines = [];
+  lines.push(`LAYOUT: ${layout.name}`);
+  if (angle) lines.push(`CAMPAIGN ANGLE: ${angle}`);
+  if (copyType) lines.push(`COPY TYPE: ${COPY_TYPE_LABELS[copyType] || copyType}`);
+  if (heroStyle) lines.push(`HERO STYLE: ${HERO_LABELS[heroStyle] || heroStyle}`);
+  lines.push("");
+  Object.entries(layout.briefStructure).forEach(([k, v]) => {
+    lines.push(`${k.toUpperCase()}`);
+    lines.push(v);
+    lines.push("");
+  });
+  return lines.join("\n").trim();
+}
+
+function copyBrief(layoutId, btn) {
+  const angle = document.getElementById("angle-input").value.trim();
+  const copyType = document.getElementById("copy-type").value;
+  const heroStyle = document.getElementById("hero-style").value;
+  const text = buildBriefText(layoutId, angle, copyType, heroStyle);
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = btn.nextElementSibling;
+    if (toast) { toast.classList.add("visible"); setTimeout(() => toast.classList.remove("visible"), 1800); }
+  });
+}
+
+function toggleBrief(layoutId) {
+  const el = document.getElementById("brief-" + layoutId);
+  if (!el) return;
+  const visible = el.classList.contains("visible");
+  document.querySelectorAll(".brief-preview").forEach(e => e.classList.remove("visible"));
+  if (!visible) el.classList.add("visible");
+}
+
+function renderBriefPreview(layoutId, angle, copyType, heroStyle) {
+  const layout = LAYOUTS[layoutId];
+  const fields = layout.briefStructure;
+  let html = `<div class="brief-preview-title">Brief structure starter</div>`;
+  if (angle) html += `<div class="brief-field"><div class="brief-field-label">Campaign angle</div><div class="brief-field-value">${angle}</div></div>`;
+  if (copyType) html += `<div class="brief-field"><div class="brief-field-label">Copy type</div><div class="brief-field-value">${COPY_TYPE_LABELS[copyType] || copyType}</div></div>`;
+  Object.entries(fields).forEach(([k, v]) => {
+    html += `<div class="brief-field"><div class="brief-field-label">${k}</div><div class="brief-field-value">${v}</div></div>`;
+  });
+  html += `<div class="copy-btn-wrap"><button class="btn-ghost" onclick="copyBrief('${layoutId}', this)">Copy brief starter</button><span class="copy-toast">Copied!</span></div>`;
+  return html;
+}
+
+function getLayouts() {
+  const angle = document.getElementById("angle-input").value.trim();
+  const copyType = document.getElementById("copy-type").value;
+  const heroStyle = document.getElementById("hero-style").value;
+  const sale = document.getElementById("sale-mode").value;
+  const resultsEl = document.getElementById("results");
+  const contextBar = document.getElementById("context-bar");
+
+  if (!angle && !copyType && !heroStyle) {
+    resultsEl.innerHTML = `<div class="empty-state"><div class="empty-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#A09B96" stroke-width="1.5"/><rect x="6" y="6" width="12" height="5" rx="1.5" fill="#C9C4BE"/><rect x="6" y="13" width="8" height="2" rx="1" fill="#E2DED9"/><rect x="6" y="16" width="5" height="2" rx="1" fill="#E2DED9"/></svg></div><h3>Add a bit more detail</h3><p>Fill in at least one field to get layout recommendations.</p></div>`;
+    contextBar.className = "context-bar";
+    return;
+  }
+
+  // Context bar
+  let pills = [];
+  if (angle) pills.push(`<span class="context-pill">${angle}</span>`);
+  if (copyType) pills.push(`<span class="context-pill">${COPY_TYPE_LABELS[copyType]}</span>`);
+  if (heroStyle) pills.push(`<span class="context-pill">${HERO_LABELS[heroStyle]}</span>`);
+  if (sale === "yes") pills.push(`<span class="context-pill">Sale</span>`);
+  contextBar.innerHTML = `<strong>Showing layouts for:</strong> ${pills.join(" ")}`;
+  contextBar.className = "context-bar visible";
+
+  const ranked = scoreLayouts(copyType, heroStyle, sale);
+  let html = "";
+
+  ranked.forEach((item, i) => {
+    const { id, layout } = item;
+    const isRec = i === 0;
+    html += `
+    <div class="layout-card${isRec ? " recommended" : ""}">
+      <div class="layout-card-inner">
+        <div class="wireframe-col">
+          <div class="wireframe-label">Layout preview</div>
+          <div class="wireframe-frame">${renderWireframe(id)}</div>
+        </div>
+        <div class="card-content">
+          <div class="card-top">
+            <div class="card-title">${layout.name}</div>
+            ${isRec ? `<span class="badge-rec">Best fit</span>` : ""}
+          </div>
+          <p class="card-why">${layout.why}</p>
+          <div class="tags">${layout.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+          <div class="notes-section">
+            <label for="notes-${id}">Your notes on this layout</label>
+            <textarea id="notes-${id}" placeholder="Why you're considering this, what to watch out for, image ideas…"></textarea>
+          </div>
+          <div class="card-actions">
+            <button class="btn-secondary" onclick="toggleBrief('${id}')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              View brief starter
+            </button>
+          </div>
+          <div class="brief-preview" id="brief-${id}">
+            ${renderBriefPreview(id, angle, copyType, heroStyle)}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  resultsEl.innerHTML = html;
+}
+
+document.getElementById("angle-input").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") getLayouts();
+});
+</script>
+</body>
+</html>
