@@ -440,46 +440,46 @@ function renderHoliday(b, p, ctaStyle) {
  
 /* ── Treatment selection logic ── */
 const ALL_LAYOUTS = ['hero-led','editorial','before-after','feature-split','holiday'];
-const CTA_STYLES = ['solid','outline','pill'];
  
-function getTreatmentOrder(brief) {
+// All possible 3-layout combinations (no repeats)
+const LAYOUT_COMBOS = [
+  ['hero-led',     'editorial',     'before-after'],
+  ['hero-led',     'before-after',  'feature-split'],
+  ['hero-led',     'feature-split', 'editorial'],
+  ['editorial',    'before-after',  'feature-split'],
+  ['editorial',    'hero-led',      'holiday'],
+  ['before-after', 'editorial',     'hero-led'],
+  ['before-after', 'feature-split', 'editorial'],
+  ['feature-split','hero-led',      'before-after'],
+  ['feature-split','editorial',     'holiday'],
+  ['holiday',      'hero-led',      'before-after'],
+];
+ 
+function getBaseCombo(brief) {
+  // Pick a starting combo index from brief signals so first generate is brief-driven
   const at = brief.angleType;
   const aw = brief.awareness;
-  const av = brief.avatar;
+  if (at==='curiosity'  && aw==='unaware')  return 0; // editorial leads
+  if (at==='curiosity')                     return 5; // editorial leads
+  if (at==='direct'     && aw==='problem')  return 1; // before-after leads
+  if (at==='direct')                        return 7; // feature-split leads
+  if (at==='holiday')                       return 4; // holiday in mix
+  if (at==='disruptive')                    return 3; // editorial + before-after
+  if (aw==='problem')                       return 5;
+  if (aw==='solution')                      return 7;
+  if (aw==='most')                          return 1;
+  return 0; // default
+}
  
-  // Score each layout per brief signals
-  const scores = {
-    'hero-led':      0,
-    'editorial':     0,
-    'before-after':  0,
-    'feature-split': 0,
-    'holiday':       0
-  };
- 
-  if (at==='curiosity')   { scores['editorial']+=4; scores['hero-led']+=2; scores['before-after']+=1; }
-  if (at==='direct')      { scores['hero-led']+=3; scores['before-after']+=4; scores['feature-split']+=3; }
-  if (at==='holiday')     { scores['holiday']+=6; scores['hero-led']+=2; }
-  if (at==='disruptive')  { scores['editorial']+=5; scores['before-after']+=3; scores['hero-led']+=1; }
- 
-  if (aw==='unaware')     { scores['editorial']+=2; scores['hero-led']+=1; }
-  if (aw==='problem')     { scores['before-after']+=3; scores['editorial']+=2; }
-  if (aw==='solution')    { scores['feature-split']+=3; scores['hero-led']+=2; }
-  if (aw==='product')     { scores['feature-split']+=2; scores['before-after']+=2; }
-  if (aw==='most')        { scores['hero-led']+=3; scores['before-after']+=2; }
- 
-  if (av==='pam')         { scores['before-after']+=2; scores['hero-led']+=1; }
-  if (av==='sam')         { scores['feature-split']+=2; scores['editorial']+=1; }
- 
-  // Sort by score descending, return top 3
-  return Object.entries(scores)
-    .sort((a,b)=>b[1]-a[1])
-    .map(e=>e[0])
-    .slice(0,3);
+function getLayouts(brief, shuffleSeed) {
+  const base = getBaseCombo(brief);
+  // Each regenerate steps forward through combos from the base
+  const idx = (base + shuffleSeed) % LAYOUT_COMBOS.length;
+  return LAYOUT_COMBOS[idx];
 }
  
 function pickPalettes(layouts, shuffleSeed) {
-  // Use shuffleSeed to rotate palette assignments each regenerate
-  const offset = shuffleSeed % PALETTES.length;
+  const offset = (shuffleSeed * 3) % PALETTES.length;
   return layouts.map((_, i) => PALETTES[(offset + i * 4) % PALETTES.length]);
 }
  
@@ -531,7 +531,7 @@ function generateMockups() {
  
   shuffleSeed++;
  
-  const layouts = getTreatmentOrder(b);
+  const layouts = getLayouts(b, shuffleSeed);
   const palettes = pickPalettes(layouts, shuffleSeed);
   const ctaStyles = pickCtaStyles(layouts, shuffleSeed);
  
