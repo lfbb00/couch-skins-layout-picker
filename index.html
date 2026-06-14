@@ -420,11 +420,11 @@ Rules:
   const clean = (data.text||'').replace(/```json|```/g,'').trim();
   const treatments = JSON.parse(clean);
  
-  // Enrich each treatment with full palette data
-  return treatments.map((t, i) => ({
-    ...t,
-    palette: assignedPalettes[i]
-  }));
+  // Enrich each treatment with full palette data by matching blue hex
+  return treatments.map((t) => {
+    const palette = BLUE_PALETTES.find(p => p.blue === t.blue) || BLUE_PALETTES.find(p => p.name.toLowerCase() === (t.blueName||"").toLowerCase()) || BLUE_PALETTES[0];
+    return { ...t, palette };
+  });
 }
  
 /* ── Shared modules ── */
