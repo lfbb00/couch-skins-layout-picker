@@ -327,49 +327,43 @@ function getBrief() {
  
 // Blue palette library — varied shades, always blue
 const BLUE_PALETTES = [
-  { name:'Navy',       blue:'#1B3A6B', light:'#EBF0FA', mid:'#3B6CB7', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1B3A6B' },
-  { name:'Cobalt',     blue:'#1A56DB', light:'#EEF4FF', mid:'#3B82F6', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1A56DB' },
-  { name:'Steel',      blue:'#2563A8', light:'#EFF6FF', mid:'#4B9CD3', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#2563A8' },
-  { name:'Slate blue', blue:'#3730A3', light:'#EEF2FF', mid:'#6366F1', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#3730A3' },
-  { name:'Ocean',      blue:'#0E4C7A', light:'#E0F2FE', mid:'#0EA5E9', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0E4C7A' },
-  { name:'Denim',      blue:'#1D4ED8', light:'#EFF6FF', mid:'#60A5FA', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1D4ED8' },
-  { name:'Midnight',   blue:'#1E3A5F', light:'#F0F7FF', mid:'#5B8DB8', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1E3A5F' },
-  { name:'Sky',        blue:'#0369A1', light:'#F0F9FF', mid:'#38BDF8', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0369A1' },
-  { name:'Periwinkle', blue:'#4F46E5', light:'#EEF2FF', mid:'#818CF8', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#4F46E5' },
-  { name:'Royal',      blue:'#2040A0', light:'#EBF0FF', mid:'#4A6FD4', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#2040A0' },
-  { name:'Teal blue',  blue:'#0F6C8A', light:'#E0F7FA', mid:'#2AAFCA', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#0F6C8A' },
-  { name:'Sapphire',   blue:'#1A3C6E', light:'#EAF1FB', mid:'#3B7DD8', text:'#fff', bannerBadgeBg:'#fff', bannerBadgeText:'#1A3C6E' },
+  { name:'Navy',       blue:'#1B3A6B', light:'#EBF0FA', mid:'#3B6CB7' },
+  { name:'Cobalt',     blue:'#1A56DB', light:'#EEF4FF', mid:'#3B82F6' },
+  { name:'Steel',      blue:'#2563A8', light:'#EFF6FF', mid:'#4B9CD3' },
+  { name:'Slate blue', blue:'#3730A3', light:'#EEF2FF', mid:'#6366F1' },
+  { name:'Ocean',      blue:'#0E4C7A', light:'#E0F2FE', mid:'#0EA5E9' },
+  { name:'Denim',      blue:'#1D4ED8', light:'#EFF6FF', mid:'#60A5FA' },
+  { name:'Midnight',   blue:'#1E3A5F', light:'#F0F7FF', mid:'#5B8DB8' },
+  { name:'Sky',        blue:'#0369A1', light:'#F0F9FF', mid:'#38BDF8' },
+  { name:'Periwinkle', blue:'#4F46E5', light:'#EEF2FF', mid:'#818CF8' },
+  { name:'Royal',      blue:'#2040A0', light:'#EBF0FF', mid:'#4A6FD4' },
+  { name:'Teal blue',  blue:'#0F6C8A', light:'#E0F7FA', mid:'#2AAFCA' },
+  { name:'Sapphire',   blue:'#1A3C6E', light:'#EAF1FB', mid:'#3B7DD8' },
 ];
  
+const ALL_LAYOUTS = ['hero-led','editorial','before-after','feature-split','holiday','testimonial-led','photo-collage'];
 const CTA_STYLES = ['solid','outline','pill','rounded'];
- 
-function pickLayouts(b) {
-  const at = (b.angleType||'').toLowerCase();
-  const aw = (b.awareness||'').toLowerCase();
-  const hasTestimonial = !!b.testimonial;
- 
-  if (at.includes('curiosity'))  return hasTestimonial ? ['editorial','testimonial-led','hero-led'] : ['editorial','hero-led','before-after'];
-  if (at.includes('disruptive')) return ['editorial','before-after','photo-collage'];
-  if (at.includes('holiday'))    return ['holiday','hero-led', hasTestimonial ? 'testimonial-led' : 'feature-split'];
-  if (at.includes('direct') && aw.includes('problem')) return ['before-after','feature-split',hasTestimonial?'testimonial-led':'hero-led'];
-  if (at.includes('direct'))     return ['feature-split','before-after','hero-led'];
-  if (aw.includes('unaware'))    return ['editorial','photo-collage','hero-led'];
-  if (aw.includes('problem'))    return ['before-after','editorial',hasTestimonial?'testimonial-led':'feature-split'];
-  if (aw.includes('solution'))   return ['feature-split','hero-led','before-after'];
-  if (aw.includes('most'))       return ['hero-led','before-after',hasTestimonial?'testimonial-led':'feature-split'];
-  return ['hero-led','editorial','before-after'];
-}
  
 let generateCount = 0;
  
-async function callProxy(brief, layouts) {
+async function callProxy(brief) {
   generateCount++;
+  // Rotate palette starting point each generate
   const paletteOffset = (generateCount * 3) % BLUE_PALETTES.length;
-  const assignedPalettes = layouts.map((_, i) => BLUE_PALETTES[(paletteOffset + i * 4) % BLUE_PALETTES.length]);
   const ctaOffset = generateCount % CTA_STYLES.length;
-  const assignedCtas = layouts.map((_, i) => CTA_STYLES[(ctaOffset + i) % CTA_STYLES.length]);
  
-  const prompt = `You are a creative director for Couch Skins, a DTC brand selling fitted per-cushion couch covers. Brand color is blue — every treatment uses blue as the primary accent.
+  const prompt = `You are a creative director for Couch Skins, a DTC brand selling fitted per-cushion couch covers. Blue is the brand color — every treatment uses blue as the primary accent.
+ 
+Available layouts: hero-led, editorial, before-after, feature-split, holiday, testimonial-led, photo-collage
+ 
+Layout descriptions:
+- hero-led: full-width blue hero with hook overlaid, body copy below, strong visual impact
+- editorial: hook as large typography first, no dominant hero, feels like a letter, best for curiosity or disruptive angles
+- before-after: side-by-side before/after panels, visual transformation is the mechanism
+- feature-split: alternating image/text rows walking through product mechanism step by step
+- holiday: occasion-first, warm hero, occasion callout block, best for seasonal sends
+- testimonial-led: customer quote block opens after hero, social proof drives conversion
+- photo-collage: grid of multiple lifestyle images, editorial feel, minimal text
  
 BRIEF:
 Angle statement: ${brief.angleStmt||'not provided'}
@@ -378,30 +372,39 @@ Awareness: ${brief.awareness||'not provided'}
 Sophistication: ${brief.soph||'not provided'}
 Mechanism: ${brief.mechanism||'not provided'}
 Angle type: ${brief.angleType||'not provided'}
+Subject: ${brief.subject||'not provided'}
 Hero hook: ${brief.hook||'not provided'}
 Body copy: ${brief.body||'not provided'}
+Testimonial available: ${brief.testimonial ? 'yes — ' + brief.testimonial.substring(0,80) : 'no'}
 CTA: ${brief.cta||'not provided'}
 Promo code: ${brief.promoCode||'none'}
+Generate number: ${generateCount} (use this to vary your choices — different layouts each time even for same brief)
  
-The layouts and blue palettes are already assigned. Your ONLY job is to write the name, why, and designNote for each treatment.
+Your job: choose 3 DIFFERENT layouts that best fit this specific brief. Think about what would make someone click. Consider the avatar, awareness stage, angle type, and mechanism. Be creative — do not default to the same 3 layouts every time.
  
-Assignments:
-- Treatment 1: layout="${layouts[0]}", blue="${assignedPalettes[0].blue}" (${assignedPalettes[0].name}), ctaStyle="${assignedCtas[0]}"
-- Treatment 2: layout="${layouts[1]}", blue="${assignedPalettes[1].blue}" (${assignedPalettes[1].name}), ctaStyle="${assignedCtas[1]}"
-- Treatment 3: layout="${layouts[2]}", blue="${assignedPalettes[2].blue}" (${assignedPalettes[2].name}), ctaStyle="${assignedCtas[2]}"
+For each treatment also choose a blue shade from this palette (use different shades across treatments):
+Palette options (offset ${paletteOffset}): navy #1B3A6B, cobalt #1A56DB, steel #2563A8, slate #3730A3, ocean #0E4C7A, denim #1D4ED8, midnight #1E3A5F, sky #0369A1, periwinkle #4F46E5, royal #2040A0, teal #0F6C8A, sapphire #1A3C6E
  
 Return a JSON array of exactly 3 objects. Each must have:
 {
   "name": "Short evocative treatment name 3-5 words",
-  "layout": use exactly the layout assigned above,
-  "blue": use exactly the hex assigned above,
-  "blueName": use exactly the name assigned above,
-  "ctaStyle": use exactly the ctaStyle assigned above,
-  "why": "One sentence max 20 words why this layout fits this specific brief",
+  "layout": one of the 7 layouts above — all 3 must be DIFFERENT,
+  "blue": a hex from the palette above — all 3 must be DIFFERENT shades,
+  "blueName": the name of that blue shade,
+  "ctaStyle": one of solid/outline/pill/rounded — vary across treatments,
+  "why": "One sentence max 20 words — why THIS layout fits THIS specific brief, referencing avatar or angle type or mechanism",
   "designNote": "One visual direction note max 10 words"
 }
  
-Return only the raw JSON array. No markdown. No explanation.`;
+Rules:
+- All 3 layouts must be different from each other
+- All 3 blue shades must be different
+- If testimonial is available, include testimonial-led as one treatment
+- If angle type is holiday/seasonal, include holiday as one treatment
+- If angle type is curiosity or disruptive, include editorial as one treatment
+- Vary ctaStyle across all 3
+- The generate number should influence your choices — pick different combinations each time
+- Return only the raw JSON array, no markdown, no explanation`;
  
   const response = await fetch('/api/groq', {
     method: 'POST',
@@ -689,8 +692,7 @@ async function generateMockups() {
   showLoading();
  
   try {
-    const layouts = pickLayouts(b);
-    const treatments = await callProxy(b, layouts);
+    const treatments = await callProxy(b);
     let html = '';
     treatments.forEach((t, i) => {
       const emailHtml = renderTreatment(t.layout, b, t);
